@@ -137,8 +137,8 @@ const ApplicationForm = () => {
           <React.Fragment key={s.num}>
             <div className="relative flex flex-col items-center justify-center z-10">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 border-2 ${step > s.num ? 'bg-brand-dark text-white border-brand-dark' :
-                  step === s.num ? 'bg-brand-lavender text-brand-dark border-brand-dark shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]' :
-                    'bg-brand-light text-brand-dark/40 border-brand-dark/20'
+                step === s.num ? 'bg-brand-lavender text-brand-dark border-brand-dark shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]' :
+                  'bg-brand-light text-brand-dark/40 border-brand-dark/20'
                 }`}>
                 {step > s.num ? <CheckCircle2 className="w-5 h-5" /> : s.num}
               </div>
@@ -714,7 +714,7 @@ export default function App() {
                     <Badge className={`${project.color} text-brand-dark mb-2 border-brand-dark`}>{project.category}</Badge>
                     <h3 className="text-3xl font-display font-bold uppercase">{project.title}</h3>
                   </div>
-                  <div className="w-14 h-14 rounded-full bg-brand-orange text-white flex items-center justify-center creative-border-sm group-hover:rotate-45 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-full bg-brand-orange text-white flex items-center justify-center creative-border-sm group-hover:rotate-45 transition-transform duration-300 shrink-0">
                     <ArrowRight className="w-7 h-7" />
                   </div>
                 </div>
