@@ -4,15 +4,15 @@
  */
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "motion/react";
-import { 
-  ArrowRight, 
-  Instagram, 
-  Youtube, 
-  Menu, 
-  X, 
-  Sparkles, 
-  Zap, 
-  Target, 
+import {
+  ArrowRight,
+  Instagram,
+  Youtube,
+  Menu,
+  X,
+  Sparkles,
+  Zap,
+  Target,
   BarChart3,
   CheckCircle2,
   Send,
@@ -106,7 +106,7 @@ const ApplicationForm = () => {
 
   if (formSubmitted) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         className="bg-white creative-border rounded-3xl p-12 text-center text-brand-dark max-w-3xl mx-auto"
@@ -118,8 +118,8 @@ const ApplicationForm = () => {
         <p className="text-brand-dark/70 mb-8 max-w-md mx-auto text-lg">
           Our team is reviewing your application. We'll reach out within 24-48 hours with next steps.
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           onClick={() => setFormSubmitted(false)}
           className="creative-border creative-border-hover bg-brand-light text-brand-dark px-8 py-6 rounded-full font-bold uppercase tracking-widest"
         >
@@ -136,23 +136,21 @@ const ApplicationForm = () => {
         {steps.map((s, index) => (
           <React.Fragment key={s.num}>
             <div className="relative flex flex-col items-center justify-center z-10">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 border-2 ${
-                step > s.num ? 'bg-brand-dark text-white border-brand-dark' : 
-                step === s.num ? 'bg-brand-lavender text-brand-dark border-brand-dark shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]' : 
-                'bg-brand-light text-brand-dark/40 border-brand-dark/20'
-              }`}>
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 border-2 ${step > s.num ? 'bg-brand-dark text-white border-brand-dark' :
+                  step === s.num ? 'bg-brand-lavender text-brand-dark border-brand-dark shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]' :
+                    'bg-brand-light text-brand-dark/40 border-brand-dark/20'
+                }`}>
                 {step > s.num ? <CheckCircle2 className="w-5 h-5" /> : s.num}
               </div>
-              <span className={`absolute top-14 text-[10px] md:text-xs font-bold tracking-widest uppercase text-center w-24 hidden sm:block ${
-                step >= s.num ? 'text-brand-dark' : 'text-brand-dark/40'
-              }`}>
+              <span className={`absolute top-14 text-[10px] md:text-xs font-bold tracking-widest uppercase text-center w-24 hidden sm:block ${step >= s.num ? 'text-brand-dark' : 'text-brand-dark/40'
+                }`}>
                 {s.label}
               </span>
             </div>
 
             {index < steps.length - 1 && (
               <div className="flex-1 h-[2px] bg-brand-dark/10 mx-2 sm:mx-4 relative z-0 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="absolute left-0 top-0 bottom-0 bg-brand-orange transition-all duration-500"
                   style={{ width: step > s.num ? '100%' : '0%' }}
                 />
@@ -265,7 +263,7 @@ const ApplicationForm = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label className="text-brand-dark font-bold text-sm uppercase tracking-wider">Monthly Budget*</Label>
@@ -298,7 +296,7 @@ const ApplicationForm = () => {
               Back
             </Button>
           ) : <div></div>}
-          
+
           <Button type="submit" className="bg-brand-dark text-white hover:bg-brand-orange rounded-full px-8 py-4 md:py-6 font-bold uppercase tracking-widest transition-colors creative-border-sm creative-border-hover flex items-center">
             {step === 4 ? 'Submit Application' : 'Next Step'} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
@@ -371,25 +369,25 @@ export default function App() {
       </AnimatePresence>
 
       {/* Global Paper Texture Overlay */}
-      <div 
+      <div
         className="fixed inset-0 z-[100] pointer-events-none opacity-40 mix-blend-multiply"
         style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/cream-paper.png")` }}
       />
 
       {/* Scroll Progress Bar */}
-      <motion.div 
+      <motion.div
         className="fixed top-0 left-0 right-0 h-2 bg-brand-orange z-[60] origin-left"
         style={{ scaleX }}
       />
 
       {/* Floating CTA for Mobile */}
       <AnimatePresence>
-        <motion.div 
+        <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="fixed bottom-6 right-6 z-40 md:hidden"
         >
-          <Button 
+          <Button
             onClick={scrollToContact}
             className="rounded-full w-16 h-16 bg-brand-orange text-white creative-border shadow-xl flex items-center justify-center p-0"
           >
@@ -401,7 +399,7 @@ export default function App() {
       {/* Navigation */}
       <nav className="fixed top-4 left-4 right-4 z-[120]">
         <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-md creative-border rounded-2xl px-6 h-20 flex items-center justify-between">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center cursor-pointer h-12"
@@ -413,16 +411,16 @@ export default function App() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8 font-display font-bold uppercase text-sm tracking-widest">
             {["Services", "Portfolio", "Process"].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
                 className="hover:text-brand-orange transition-colors relative group"
               >
                 {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all group-hover:w-full" />
               </a>
             ))}
-            <Button 
+            <Button
               onClick={scrollToContact}
               className="bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover"
             >
@@ -431,7 +429,7 @@ export default function App() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="md:hidden p-2 bg-brand-dark text-white rounded-xl creative-border-sm"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -442,23 +440,23 @@ export default function App() {
         {/* Mobile Nav */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               className="md:hidden mt-4 bg-white creative-border rounded-2xl p-6 flex flex-col gap-4"
             >
               {["Services", "Portfolio", "Process"].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
                   className="text-xl font-display font-bold uppercase"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
                 </a>
               ))}
-              <Button 
+              <Button
                 onClick={() => {
                   setIsMenuOpen(false);
                   scrollToContact();
@@ -477,13 +475,13 @@ export default function App() {
         {/* Floating Objects (Simulating the 3D items from the screenshot) */}
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
           {/* Blue Chair (Simulated) */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -15, 0], rotate: [-5, -2, -5] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[35%] left-[2%] md:left-[5%] w-32 h-32 md:w-48 md:h-48 bg-[#2b309b] rounded-lg shadow-2xl skew-x-12"
           />
           {/* Pink Table (Simulated) */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 10, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute top-[10%] right-[10%] md:right-[20%] w-24 h-24 md:w-40 md:h-40 bg-[#ff9eb5] rounded-full shadow-xl flex items-center justify-center"
@@ -491,25 +489,25 @@ export default function App() {
             <div className="w-16 h-16 md:w-24 md:h-24 bg-[#faece3] rounded-full" />
           </motion.div>
           {/* Green Cylinder */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             className="absolute top-[45%] left-[25%] md:left-[30%] w-24 h-32 md:w-40 md:h-48 bg-[#00873e] rounded-[3rem] shadow-2xl -rotate-12"
           />
           {/* Yellow Patterned Plate */}
-          <motion.div 
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="absolute bottom-[15%] left-[10%] md:left-[20%] w-32 h-32 md:w-56 md:h-56 bg-[#d4df00] rounded-full border-[8px] border-black border-dashed shadow-xl"
           />
           {/* Blue Vase */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-[5%] right-[25%] md:right-[35%] w-16 h-24 md:w-24 md:h-40 bg-[#8cb8d9] rounded-t-3xl rounded-b-xl shadow-xl"
           />
           {/* Colorful Striped Vase */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
             className="absolute top-[20%] left-[50%] w-12 h-20 md:w-20 md:h-32 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-500 rounded-full shadow-xl"
@@ -519,7 +517,7 @@ export default function App() {
         <div className="w-full px-4 md:px-8 relative z-10 max-w-[1800px] mx-auto">
           <div className="flex flex-col w-full">
             {/* Line 1 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -534,7 +532,7 @@ export default function App() {
             </motion.div>
 
             {/* Line 2 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -546,7 +544,7 @@ export default function App() {
             </motion.div>
 
             {/* Line 3 */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -555,12 +553,12 @@ export default function App() {
               <h1 className="text-[clamp(4rem,18vw,24rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
                 More!
               </h1>
-              
+
               <div className="flex flex-col items-start lg:items-end text-left lg:text-right max-w-sm pb-4 md:pb-12 lg:pr-12">
                 <p className="text-[#f04d21] font-mono text-sm md:text-base uppercase tracking-widest mb-6 font-bold leading-relaxed">
-                  Bright and bold<br/>are in demand this<br/>season.
+                  Bright and bold<br />are in demand this<br />season.
                 </p>
-                <Button 
+                <Button
                   onClick={scrollToContact}
                   className="bg-[#f04d21] text-white hover:bg-brand-dark rounded-none px-8 py-6 text-sm md:text-base font-bold uppercase tracking-widest transition-colors"
                 >
@@ -592,7 +590,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Large Card */}
-            <motion.a 
+            <motion.a
               href="https://stan.store/troyiamonay"
               target="_blank"
               rel="noopener noreferrer"
@@ -609,7 +607,7 @@ export default function App() {
             </motion.a>
 
             {/* Small Card 1 */}
-            <motion.a 
+            <motion.a
               href="https://stan.store/troyiamonay"
               target="_blank"
               rel="noopener noreferrer"
@@ -627,7 +625,7 @@ export default function App() {
             </motion.a>
 
             {/* Small Card 2 */}
-            <motion.a 
+            <motion.a
               href="https://stan.store/troyiamonay"
               target="_blank"
               rel="noopener noreferrer"
@@ -645,7 +643,7 @@ export default function App() {
             </motion.a>
 
             {/* Medium Card */}
-            <motion.a 
+            <motion.a
               href="https://stan.store/troyiamonay"
               target="_blank"
               rel="noopener noreferrer"
@@ -689,23 +687,23 @@ export default function App() {
                 color: "bg-brand-lavender"
               },
               {
-                title: "#Mozination campaign",
+                title: "#Mozination campaign strategy",
                 category: "Campaign Strategy",
                 img: "https://instagram.fmnl17-3.fna.fbcdn.net/v/t51.82787-15/625257710_18123569827489369_8040625987422691498_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzAyODY5Nzk3MjI3MDgxMTgwNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ijbrQOE4sSYQ7kNvwH20Ov2&_nc_oc=Adpp2HOMFXy2dMRs7i91y_I757RbJmkqHoVuIGdq8gXNQRH4nf-HTZ3DAM6V5xSPKMA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-3.fna&_nc_gid=BddqFSebmAUXWFpFNAG2eA&_nc_ss=7a32e&oh=00_Af2wroqV2qRU2ZOjJJma5h69UxzWMPpHxkNqj1KU4oXXuQ&oe=69E53B75",
                 color: "bg-brand-green"
               }
             ].map((project, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ delay: idx * 0.2 }}
-                className="group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer"
+                className="group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer group-hover:bg-brand-dark transition-colors duration-300"
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={project.img} 
+                  <img
+                    src={project.img}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     referrerPolicy="no-referrer"
@@ -770,13 +768,13 @@ export default function App() {
         {/* Paper Tear Overlay */}
         <div className="absolute inset-0 z-40 pointer-events-none overflow-hidden">
           {/* Top Tear */}
-          <motion.div 
-            style={{ y: topTearY }} 
+          <motion.div
+            style={{ y: topTearY }}
             className="absolute top-0 left-0 right-0 h-1/2 bg-white"
           >
             {/* Paper texture for the tear itself */}
             <div className="absolute inset-0 opacity-40 mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/cream-paper.png")` }} />
-            
+
             {/* Fibrous shadow layer */}
             <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="absolute top-full left-0 w-full h-4 sm:h-6 md:h-10 lg:h-14 fill-white/60">
               <path d="M0,0 L0,22 L20,27 L40,17 L60,30 L80,20 L100,27 L120,12 L140,32 L160,22 L180,30 L200,17 L220,27 L240,14 L260,34 L280,20 L300,27 L320,12 L340,32 L360,22 L380,30 L400,17 L420,27 L440,14 L460,34 L480,20 L500,27 L520,12 L540,32 L560,22 L580,30 L600,17 L620,27 L640,14 L660,34 L680,20 L700,27 L720,12 L740,32 L760,22 L780,30 L800,17 L820,27 L840,14 L860,34 L880,20 L900,27 L920,12 L940,32 L960,22 L980,30 L1000,17 L1020,27 L1040,14 L1060,34 L1080,20 L1100,27 L1120,12 L1140,32 L1160,22 L1180,30 L1200,17 L1200,0 Z" />
@@ -786,10 +784,10 @@ export default function App() {
               <path d="M0,0 L0,20 L20,25 L40,15 L60,28 L80,18 L100,25 L120,10 L140,30 L160,20 L180,28 L200,15 L220,25 L240,12 L260,32 L280,18 L300,25 L320,10 L340,30 L360,20 L380,28 L400,15 L420,25 L440,12 L460,32 L480,18 L500,25 L520,10 L540,30 L560,20 L580,28 L600,15 L620,25 L640,12 L660,32 L680,18 L700,25 L720,10 L740,30 L760,20 L780,28 L800,15 L820,25 L840,12 L860,32 L880,18 L900,25 L920,10 L940,30 L960,20 L980,28 L1000,15 L1020,25 L1040,12 L1060,32 L1080,18 L1100,25 L1120,10 L1140,30 L1160,20 L1180,28 L1200,15 L1200,0 Z" />
             </svg>
           </motion.div>
-          
+
           {/* Bottom Tear */}
-          <motion.div 
-            style={{ y: bottomTearY }} 
+          <motion.div
+            style={{ y: bottomTearY }}
             className="absolute bottom-0 left-0 right-0 h-1/2 bg-white"
           >
             {/* Paper texture for the tear itself */}
@@ -820,7 +818,7 @@ export default function App() {
               "https://www.instagram.com/reel/DVJ7qwBEjSu/embed/",
               "https://www.instagram.com/reel/DO7EsRUDejI/embed/"
             ].map((reelUrl, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -828,11 +826,11 @@ export default function App() {
                 transition={{ delay: idx * 0.1 }}
                 className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
               >
-                <iframe 
-                  src={reelUrl} 
-                  className="w-full h-full border-none scale-[1.35] -translate-y-[8%]" 
-                  scrolling="no" 
-                  allowTransparency={true} 
+                <iframe
+                  src={reelUrl}
+                  className="w-full h-full border-none scale-[1.35] -translate-y-[8%]"
+                  scrolling="no"
+                  allowTransparency={true}
                   allow="encrypted-media"
                 ></iframe>
               </motion.div>
@@ -845,7 +843,7 @@ export default function App() {
       <section className="py-20 md:py-32 bg-brand-light relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            
+
             {/* Image Column */}
             <div className="relative max-w-[260px] sm:max-w-sm md:max-w-md mx-auto lg:max-w-none w-full">
               {/* SSS Sticker */}
@@ -862,11 +860,11 @@ export default function App() {
 
               {/* Main Image */}
               <div className="rounded-t-[8rem] sm:rounded-t-[10rem] md:rounded-t-[12rem] rounded-b-[1.5rem] md:rounded-b-[2rem] overflow-hidden creative-border aspect-[3/4] relative z-10 bg-white">
-                <img 
-                  src="/meet-troyia.jpg" 
-                  alt="Meet Troyia" 
-                  className="w-full h-full object-cover" 
-                  referrerPolicy="no-referrer" 
+                <img
+                  src="/meet-troyia.jpg"
+                  alt="Meet Troyia"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
                 />
               </div>
 
@@ -944,7 +942,7 @@ export default function App() {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-display font-bold text-lg md:text-xl mb-6 md:mb-8 uppercase tracking-widest text-brand-orange">Explore</h4>
               <ul className="space-y-4 md:space-y-6 text-white/60 text-base md:text-lg font-bold uppercase tracking-tight">
@@ -964,7 +962,7 @@ export default function App() {
               </ul>
             </div>
           </div>
-          
+
           <div className="pt-8 md:pt-12 border-t-4 border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-xs sm:text-sm font-bold uppercase tracking-widest text-center md:text-left">
             <p>© 2024 4SIX CREATIVE. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6 md:gap-12">
