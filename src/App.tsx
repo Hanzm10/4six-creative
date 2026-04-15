@@ -699,7 +699,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ delay: idx * 0.2 }}
-                className="group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer group-hover:bg-brand-dark transition-colors duration-300"
+                className="group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
