@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-accent: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-brand-orange: #f56830;
+  --color-brand-peach: #e9bc8b;
+  --color-brand-lavender: #d0c3f1;
+  --color-brand-green: #88b659;
+  --color-brand-dark: #1a1a1a;
+  --color-brand-light: #fdfbf7;
+
+  --radius-xl: 2rem;
+  --radius-2xl: 3rem;
+
+  --color-background: var(--color-brand-light);
+  --color-foreground: var(--color-brand-dark);
+  
+  --color-primary: var(--color-brand-orange);
+  --color-primary-foreground: white;
+  
+  --color-secondary: var(--color-brand-lavender);
+  --color-secondary-foreground: var(--color-brand-dark);
+  
+  --color-accent: var(--color-brand-green);
+  --color-accent-foreground: white;
+
+  --color-border: var(--color-brand-dark);
+  --color-input: var(--color-brand-dark);
+  --color-ring: var(--color-brand-orange);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+.creative-gradient {
+  background: linear-gradient(135deg, var(--color-brand-lavender) 0%, var(--color-brand-peach) 100%);
+}
+
+.creative-border {
+  border: 3px solid var(--color-brand-dark);
+  box-shadow: 6px 6px 0px var(--color-brand-dark);
+}
+
+.creative-border-sm {
+  border: 2px solid var(--color-brand-dark);
+  box-shadow: 3px 3px 0px var(--color-brand-dark);
+}
+
+.creative-border-hover {
+  @apply transition-all duration-200;
+}
+
+.creative-border-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--color-brand-dark);
+}
+
+.grid-bg {
+  position: relative;
+}
+
+.grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--color-brand-dark) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-bg-light {
+  position: relative;
+}
+
+.grid-bg-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-bg > *, .grid-bg-light > * {
+  position: relative;
+  z-index: 1;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
