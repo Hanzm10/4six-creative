@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { Routes, Route } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
@@ -36,6 +37,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+
+import Navbar from '@/layout/Navbar';
+import ServicesPage from '@/pages/ServicesPage';
+import AboutPage from '@/pages/AboutPage';
 
 const Marquee = ({ items, speed = 20, reverse = false }: { items: string[], speed?: number, reverse?: boolean }) => {
   return (
@@ -306,10 +311,8 @@ const ApplicationForm = () => {
   );
 };
 
-export default function App() {
+const HomePage = () => {
   const [showSplash, setShowSplash] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const contactRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
@@ -339,14 +342,8 @@ export default function App() {
     contactRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
-  };
-
   return (
-    <div className="min-h-screen selection:bg-brand-orange selection:text-white relative bg-brand-light">
+    <div className="min-h-screen selection:bg-brand-orange selection:text-white relative bg-brand-light overflow-x-hidden">
       {/* Splash Screen */}
       <AnimatePresence>
         {showSplash && (
@@ -397,94 +394,23 @@ export default function App() {
       </AnimatePresence>
 
       {/* Navigation */}
-      <nav className="fixed top-4 left-4 right-4 z-[120]">
-        <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-md creative-border rounded-2xl px-6 h-20 flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center cursor-pointer h-12"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            <img src="/4six-creative-logo-black.png" alt="4SIX CREATIVE" className="h-full object-contain" />
-          </motion.div>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 font-display font-bold uppercase text-sm tracking-widest">
-            {["Services", "Portfolio", "Process"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-brand-orange transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all group-hover:w-full" />
-              </a>
-            ))}
-            <Button
-              onClick={scrollToContact}
-              className="bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover"
-            >
-              Let's Talk
-            </Button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2 bg-brand-dark text-white rounded-xl creative-border-sm"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="md:hidden mt-4 bg-white creative-border rounded-2xl p-6 flex flex-col gap-4"
-            >
-              {["Services", "Portfolio", "Process"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-xl font-display font-bold uppercase"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
-              <Button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  scrollToContact();
-                }}
-                className="w-full bg-brand-dark text-white py-6 text-lg"
-              >
-                Let's Talk
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar onContactClick={scrollToContact} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] pt-32 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center">
+      <section className='relative min-h-screen pt-0 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center'>
         {/* Floating Objects (Simulating the 3D items from the screenshot) */}
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
           {/* Blue Chair (Simulated) */}
           <motion.div
             animate={{ y: [0, -15, 0], rotate: [-5, -2, -5] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[35%] left-[2%] md:left-[5%] w-32 h-32 md:w-48 md:h-48 bg-[#2b309b] rounded-lg shadow-2xl skew-x-12"
+            className="hidden md:block absolute top-[35%] left-[2%] md:left-[5%] w-32 h-32 md:w-48 md:h-48 bg-[#2b309b] rounded-lg shadow-2xl skew-x-12"
           />
           {/* Pink Table (Simulated) */}
           <motion.div
             animate={{ y: [0, 10, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[10%] right-[10%] md:right-[20%] w-24 h-24 md:w-40 md:h-40 bg-[#ff9eb5] rounded-full shadow-xl flex items-center justify-center"
+            className="hidden md:block absolute top-[10%] right-[10%] md:right-[20%] w-24 h-24 md:w-40 md:h-40 bg-[#ff9eb5] rounded-full shadow-xl flex items-center justify-center"
           >
             <div className="w-16 h-16 md:w-24 md:h-24 bg-[#faece3] rounded-full" />
           </motion.div>
@@ -492,41 +418,41 @@ export default function App() {
           <motion.div
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute top-[45%] left-[25%] md:left-[30%] w-24 h-32 md:w-40 md:h-48 bg-[#00873e] rounded-[3rem] shadow-2xl -rotate-12"
+            className="hidden md:block absolute top-[45%] left-[25%] md:left-[30%] w-24 h-32 md:w-40 md:h-48 bg-[#00873e] rounded-[3rem] shadow-2xl -rotate-12"
           />
           {/* Yellow Patterned Plate */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[15%] left-[10%] md:left-[20%] w-32 h-32 md:w-56 md:h-56 bg-[#d4df00] rounded-full border-[8px] border-black border-dashed shadow-xl"
+            className="hidden md:block absolute bottom-[15%] left-[10%] md:left-[20%] w-32 h-32 md:w-56 md:h-56 bg-[#d4df00] rounded-full border-[8px] border-black border-dashed shadow-xl"
           />
           {/* Blue Vase */}
           <motion.div
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[5%] right-[25%] md:right-[35%] w-16 h-24 md:w-24 md:h-40 bg-[#8cb8d9] rounded-t-3xl rounded-b-xl shadow-xl"
+            className="hidden md:block absolute bottom-[5%] right-[25%] md:right-[35%] w-16 h-24 md:w-24 md:h-40 bg-[#8cb8d9] rounded-t-3xl rounded-b-xl shadow-xl"
           />
           {/* Colorful Striped Vase */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            className="absolute top-[20%] left-[50%] w-12 h-20 md:w-20 md:h-32 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-500 rounded-full shadow-xl"
+            className="hidden md:block absolute top-[20%] left-[50%] w-12 h-20 md:w-20 md:h-32 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-500 rounded-full shadow-xl"
           />
         </div>
 
-        <div className="w-full px-4 md:px-8 relative z-10 max-w-[1800px] mx-auto">
+        <div className='w-full px-4 md:px-8 relative z-10 max-w-[1800px] mx-auto mt-24 md:mt-0'>
           <div className="flex flex-col w-full">
             {/* Line 1 */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="flex justify-between items-center w-full"
+              className='flex items-center w-full px-2 gap-2'
             >
-              <h1 className="text-[clamp(4rem,16vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
+              <h1 className="text-[clamp(1.5rem,8vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
                 Make
               </h1>
-              <h1 className="text-[clamp(4rem,16vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase relative z-30">
+              <h1 className="text-[clamp(1.5rem,8vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase relative z-30">
                 It
               </h1>
             </motion.div>
@@ -536,9 +462,9 @@ export default function App() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center items-center w-full mt-2 md:mt-6 relative z-10"
+              className='flex justify-center items-center w-full mt-1 md:mt-6 relative z-10'
             >
-              <h1 className="text-[clamp(5rem,22vw,28rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase text-center w-full">
+              <h1 className="text-[clamp(2.2rem,14vw,28rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase text-center w-full">
                 Pop
               </h1>
             </motion.div>
@@ -548,21 +474,21 @@ export default function App() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col lg:flex-row justify-between items-start lg:items-end w-full mt-2 md:mt-6 gap-8 relative z-30"
+              className='flex flex-col lg:flex-row justify-between items-start lg:items-end w-full mt-1 md:mt-6 gap-4 md:gap-8 relative z-30'
             >
-              <h1 className="text-[clamp(4rem,18vw,24rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
+              <h1 className="text-[clamp(1.8rem,11vw,24rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
                 More!
               </h1>
 
               <div className="flex flex-col items-start lg:items-end text-left lg:text-right max-w-sm pb-4 md:pb-12 lg:pr-12">
-                <p className="text-[#f04d21] font-mono text-sm md:text-base uppercase tracking-widest mb-6 font-bold leading-relaxed">
-                  Bright and bold<br />are in demand this<br />season.
+                <p className='text-[#f04d21] font-mono text-sm md:text-base uppercase tracking-widest mb-6 font-bold leading-relaxed'>
+                  Bold brands.<br />Real results.<br />Let's build yours.
                 </p>
                 <Button
                   onClick={scrollToContact}
-                  className="bg-[#f04d21] text-white hover:bg-brand-dark rounded-none px-8 py-6 text-sm md:text-base font-bold uppercase tracking-widest transition-colors"
+                  className='bg-brand-dark text-white hover:bg-[#f04d21] rounded-full px-8 py-6 text-sm md:text-base font-bold uppercase tracking-widest transition-colors creative-border-sm creative-border-hover flex items-center gap-2'
                 >
-                  Shop The Style
+                  Book a Free Call <ArrowRight className='w-4 h-4' />
                 </Button>
               </div>
             </motion.div>
@@ -599,7 +525,7 @@ export default function App() {
             >
               <div className="relative z-10">
                 <Badge className="bg-white text-brand-dark border-brand-dark mb-6">Most Popular</Badge>
-                <h3 className="text-4xl md:text-5xl mb-6 uppercase">Full-Service <br />Management</h3>
+                <h3 className="text-3xl md:text-5xl mb-6 uppercase">Full-Service <br />Management</h3>
                 <p className="text-lg mb-8 max-w-md">Complete social media ecosystem management. From strategy to execution, we handle it all so you can focus on your business.</p>
                 <Button className="bg-brand-dark text-white creative-border-sm pointer-events-none">Get Started</Button>
               </div>
@@ -712,7 +638,7 @@ export default function App() {
                 <div className="p-8 border-t-4 border-brand-dark flex justify-between items-center group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300">
                   <div>
                     <Badge className={`${project.color} text-brand-dark mb-2 border-brand-dark`}>{project.category}</Badge>
-                    <h3 className="text-3xl font-display font-bold uppercase">{project.title}</h3>
+                    <h3 className='text-lg md:text-3xl font-display font-bold uppercase break-words'>{project.title}</h3>
                   </div>
                   <div className="w-14 h-14 rounded-full bg-brand-orange text-white flex items-center justify-center creative-border-sm group-hover:rotate-45 transition-transform duration-300 shrink-0">
                     <ArrowRight className="w-7 h-7" />
@@ -806,7 +732,7 @@ export default function App() {
 
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-[clamp(2.5rem,6vw,5rem)] mb-6 uppercase tracking-tighter font-display font-black text-brand-dark leading-none">
+            <h2 className="text-[clamp(2rem,5vw,5rem)] mb-6 uppercase tracking-tighter font-display font-black text-brand-dark leading-none">
               Our Portfolio <span className="text-brand-orange italic"></span>
             </h2>
           </div>
@@ -904,8 +830,78 @@ export default function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className='py-24 bg-brand-dark text-white relative overflow-hidden'>
+        <div className='max-w-7xl mx-auto px-6'>
+          <div className='text-center mb-16'>
+            <div className='inline-block bg-brand-orange text-white border-2 border-brand-orange px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]'>
+              Client Love
+            </div>
+            <h2 className='text-[clamp(2.5rem,6vw,5rem)] uppercase tracking-tighter leading-none'>
+              Real Brands. <span className='text-brand-lavender italic'>Real Results.</span>
+            </h2>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+            {[
+              {
+                quote: '4SIX doubled our engagement in 60 days. Best investment we have made for our brand.',
+                name: 'Maria Santos',
+                handle: '@mariasantos_ph',
+                role: 'Founder, Laza Boutique',
+                color: 'bg-brand-lavender',
+                initials: 'MS'
+              },
+              {
+                quote: 'Troyia just gets the vibe. Our feed finally looks like the brand I always envisioned.',
+                name: 'Jake Reyes',
+                handle: '@jakereyes',
+                role: 'CEO, Mozination',
+                color: 'bg-brand-peach',
+                initials: 'JR'
+              },
+              {
+                quote: 'Our content went from generic to scroll-stopping. The strategy sessions alone are worth it.',
+                name: 'Camille Torres',
+                handle: '@camilletorres',
+                role: 'Owner, CT Wellness',
+                color: 'bg-brand-green',
+                initials: 'CT'
+              }
+            ].map((t, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ amount: 0.2 }}
+                transition={{ delay: idx * 0.15 }}
+                className='bg-white/5 border-2 border-white/10 rounded-3xl p-8 flex flex-col gap-6 hover:border-brand-orange/40 transition-colors duration-300'
+              >
+                <div className='flex gap-1'>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className='w-4 h-4 text-brand-orange fill-brand-orange' />
+                  ))}
+                </div>
+                <p className='text-white/80 text-lg leading-relaxed flex-1'>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className='flex items-center gap-4 pt-4 border-t border-white/10'>
+                  <div className={`w-12 h-12 rounded-full ${t.color} creative-border-sm flex items-center justify-center font-display font-black text-brand-dark text-sm shrink-0`}>
+                    {t.initials}
+                  </div>
+                  <div>
+                    <p className='font-bold text-white leading-none mb-1'>{t.name}</p>
+                    <p className='text-white/40 text-sm'>{t.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Lead Capture Section */}
-      <section ref={contactRef} id="contact" className="py-24 bg-brand-light grid-bg relative overflow-hidden">
+      <section id="contact" className="py-24 bg-brand-light grid-bg relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-block bg-brand-lavender text-brand-dark border-2 border-brand-dark px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
@@ -973,5 +969,15 @@ export default function App() {
         </div>
       </footer>
     </div>
+  );
+};
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/services' element={<ServicesPage />} />
+      <Route path='/about' element={<AboutPage />} />
+    </Routes>
   );
 }
