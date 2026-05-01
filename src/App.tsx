@@ -4,6 +4,11 @@
  */
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "motion/react";
+import { Routes, Route, Link } from 'react-router-dom';
+import ServicesPage from './pages/ServicesPage';
+import AboutPage from './pages/AboutPage';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { ServiceOverviewSection } from '@/components/sections/ServiceOverviewSection';
 import {
   ArrowRight,
   Instagram,
@@ -36,6 +41,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import Navbar from "@/layout/Navbar";
 
 const Marquee = ({ items, speed = 20, reverse = false }: { items: string[], speed?: number, reverse?: boolean }) => {
   return (
@@ -306,7 +312,7 @@ const ApplicationForm = () => {
   );
 };
 
-export default function App() {
+function HomePage() {
   const [showSplash, setShowSplash] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -346,7 +352,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen selection:bg-brand-orange selection:text-white relative bg-brand-light">
+    <div className="min-h-screen selection:bg-brand-orange selection:text-white relative bg-brand-light overflow-x-hidden">
       {/* Splash Screen */}
       <AnimatePresence>
         {showSplash && (
@@ -396,84 +402,12 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation */}
-      <nav className="fixed top-4 left-4 right-4 z-[120]">
-        <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-md creative-border rounded-2xl px-6 h-20 flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center cursor-pointer h-12"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            <img src="/4six-creative-logo-black.png" alt="4SIX CREATIVE" className="h-full object-contain" />
-          </motion.div>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 font-display font-bold uppercase text-sm tracking-widest">
-            {["Services", "Portfolio", "Process"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-brand-orange transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all group-hover:w-full" />
-              </a>
-            ))}
-            <Button
-              onClick={scrollToContact}
-              className="bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover"
-            >
-              Let's Talk
-            </Button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2 bg-brand-dark text-white rounded-xl creative-border-sm"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="md:hidden mt-4 bg-white creative-border rounded-2xl p-6 flex flex-col gap-4"
-            >
-              {["Services", "Portfolio", "Process"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-xl font-display font-bold uppercase"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
-              <Button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  scrollToContact();
-                }}
-                className="w-full bg-brand-dark text-white py-6 text-lg"
-              >
-                Let's Talk
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar onContactClick={scrollToContact} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] pt-32 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center">
+      <section className="relative min-h-[90vh] pt-32 md:pt-32 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center">
         {/* Floating Objects (Simulating the 3D items from the screenshot) */}
-        <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden hidden md:block">
           {/* Blue Chair (Simulated) */}
           <motion.div
             animate={{ y: [0, -15, 0], rotate: [-5, -2, -5] }}
@@ -523,10 +457,10 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="flex justify-between items-center w-full"
             >
-              <h1 className="text-[clamp(4rem,16vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
+              <h1 className="text-[clamp(2.5rem,12vw,16rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
                 Make
               </h1>
-              <h1 className="text-[clamp(4rem,16vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase relative z-30">
+              <h1 className="text-[clamp(2.5rem,12vw,16rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase relative z-30">
                 It
               </h1>
             </motion.div>
@@ -538,7 +472,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex justify-center items-center w-full mt-2 md:mt-6 relative z-10"
             >
-              <h1 className="text-[clamp(5rem,22vw,28rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase text-center w-full">
+              <h1 className="text-[clamp(3rem,18vw,22rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase text-center w-full">
                 Pop
               </h1>
             </motion.div>
@@ -550,7 +484,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col lg:flex-row justify-between items-start lg:items-end w-full mt-2 md:mt-6 gap-8 relative z-30"
             >
-              <h1 className="text-[clamp(4rem,18vw,24rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
+              <h1 className="text-[clamp(2.5rem,14vw,18rem)] font-display font-black text-[#f04d21] leading-[0.75] tracking-tighter m-0 uppercase">
                 More!
               </h1>
 
@@ -599,7 +533,7 @@ export default function App() {
             >
               <div className="relative z-10">
                 <Badge className="bg-white text-brand-dark border-brand-dark mb-6">Most Popular</Badge>
-                <h3 className="text-4xl md:text-5xl mb-6 uppercase">Full-Service <br />Management</h3>
+                <h3 className="text-2xl md:text-5xl mb-6 uppercase">Full-Service <br />Management</h3>
                 <p className="text-lg mb-8 max-w-md">Complete social media ecosystem management. From strategy to execution, we handle it all so you can focus on your business.</p>
                 <Button className="bg-brand-dark text-white creative-border-sm pointer-events-none">Get Started</Button>
               </div>
@@ -665,6 +599,7 @@ export default function App() {
         </div>
       </section>
 
+      <ServiceOverviewSection />
       {/* Portfolio Section */}
       <section id="portfolio" className="py-24 bg-brand-light grid-bg">
         <div className="max-w-7xl mx-auto px-6">
@@ -904,6 +839,7 @@ export default function App() {
         </div>
       </section>
 
+      <TestimonialsSection />
       {/* Lead Capture Section */}
       <section ref={contactRef} id="contact" className="py-24 bg-brand-light grid-bg relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
