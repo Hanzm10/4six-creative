@@ -7,6 +7,8 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "mot
 import { Routes, Route, Link } from 'react-router-dom';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import PortfolioPage from './pages/PortfolioPage';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ServiceOverviewSection } from '@/components/sections/ServiceOverviewSection';
 import {
@@ -918,6 +920,8 @@ export default function App() {
       <Route path='/' element={<HomePage />} />
       <Route path='/services' element={<ServicesPage />} />
       <Route path='/about' element={<AboutPage />} />
+      <Route path='/contact' element={<ContactPage />} />
+      <Route path='/portfolio' element={<PortfolioPage />} />
     </Routes>
   );
 }
