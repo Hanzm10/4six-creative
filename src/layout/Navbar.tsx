@@ -13,6 +13,8 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
     { label: 'Services', href: '/services' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'About', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'FAQ', href: '/faq' },
   ];
 
   return (
