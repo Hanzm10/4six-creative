@@ -10,8 +10,9 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
   const isHome = location.pathname === "/";
 
   const navLinks = [
-    { label: "Services", href: "/services" },
-    { label: "About", href: "/about" },
+    { label: 'Services', href: '/services' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'About', href: '/about' },
   ];
 
   return (
@@ -50,12 +51,20 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
               </a>
             )
           )}
-          <Button
-            onClick={onContactClick}
-            className="bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover"
-          >
-            Let's Talk
-          </Button>
+          {isHome ? (
+            <Button
+              onClick={onContactClick}
+              className='bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover'
+            >
+              Let's Talk
+            </Button>
+          ) : (
+            <Link to='/contact'>
+              <Button className='bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover'>
+                Let's Talk
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -97,15 +106,20 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 </a>
               )
             )}
-            <Button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onContactClick?.();
-              }}
-              className="w-full bg-brand-dark text-white py-6 text-lg"
-            >
-              Let's Talk
-            </Button>
+            {isHome ? (
+              <Button
+                onClick={() => { setIsMenuOpen(false); onContactClick?.(); }}
+                className='w-full bg-brand-dark text-white py-6 text-lg'
+              >
+                Let's Talk
+              </Button>
+            ) : (
+              <Link to='/contact' onClick={() => setIsMenuOpen(false)}>
+                <Button className='w-full bg-brand-dark text-white py-6 text-lg'>
+                  Let's Talk
+                </Button>
+              </Link>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
