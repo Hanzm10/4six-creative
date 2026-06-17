@@ -11,6 +11,7 @@ import ContactPage from './pages/ContactPage';
 import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import FAQPage from './pages/FAQPage';
+import AdminPage from './pages/AdminPage';
 import Footer from '@/layout/Footer';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ServiceOverviewSection } from '@/components/sections/ServiceOverviewSection';
@@ -321,6 +322,13 @@ function HomePage() {
   const [showSplash, setShowSplash] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [portfolioReels, setPortfolioReels] = useState<string[]>([
+    'https://www.instagram.com/reel/C0hn8OGuEk5/embed/',
+    'https://www.instagram.com/reel/CmMnxhTOqiZ/embed/',
+    'https://www.instagram.com/reel/DVJ7qwBEjSu/embed/',
+    'https://www.instagram.com/reel/DO7EsRUDejI/embed/'
+  ]);
+  const [portfolioVideos, setPortfolioVideos] = useState<any[]>([]);
   const contactRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
@@ -329,6 +337,11 @@ function HomePage() {
       setShowSplash(false);
     }, 2500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/reels').then(res => res.json()).then(data => setPortfolioReels(data.map((r: any) => `${r.url}embed/`)));
+    fetch('/api/videos').then(res => res.json()).then(data => setPortfolioVideos(data));
   }, []);
 
   const { scrollYProgress } = useScroll();
@@ -411,15 +424,15 @@ function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] pt-32 md:pt-32 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center">
-        {/* Floating Objects (Simulating the 3D items from the screenshot) */}
+        {/* Floating Objects (Simulated) */}
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden hidden md:block">
-          {/* Blue Chair (Simulated) */}
+          {/* Blue Chair */}
           <motion.div
             animate={{ y: [0, -15, 0], rotate: [-5, -2, -5] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-[35%] left-[2%] md:left-[5%] w-32 h-32 md:w-48 md:h-48 bg-[#2b309b] rounded-lg shadow-2xl skew-x-12"
           />
-          {/* Pink Table (Simulated) */}
+          {/* Pink Table */}
           <motion.div
             animate={{ y: [0, 10, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
@@ -752,12 +765,7 @@ function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              "https://www.instagram.com/reel/C0hn8OGuEk5/embed/",
-              "https://www.instagram.com/reel/CmMnxhTOqiZ/embed/",
-              "https://www.instagram.com/reel/DVJ7qwBEjSu/embed/",
-              "https://www.instagram.com/reel/DO7EsRUDejI/embed/"
-            ].map((reelUrl, idx) => (
+            {portfolioReels.map((reelUrl, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
@@ -776,6 +784,67 @@ function HomePage() {
               </motion.div>
             ))}
           </div>
+
+          {portfolioVideos.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+              {portfolioVideos.map((video, idx) => (
+                <div key={idx} className="rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark">
+                  <video src={`/uploads/${video.filename}`} controls className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Social Feed Grid */}
+          <div className="mt-16 md:mt-24">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-1 rounded-full bg-brand-lavender text-brand-dark creative-border-sm font-bold text-sm tracking-widest uppercase mb-6">
+                Follow Along
+              </span>
+              <h2 className="text-3xl md:text-5xl font-display font-black uppercase text-brand-dark">
+                More From The <span className="text-brand-orange italic">Feed</span>
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {Array.from({ length: 8 }).map((_, idx) => {
+                const isFourSix = idx % 2 === 0;
+                const handle = isFourSix ? '@4sixcreative' : '@troyiamonay';
+                const link = isFourSix ? 'https://instagram.com/4sixcreative' : 'https://instagram.com/troyiamonay';
+
+                return (
+                  <motion.a
+                    key={idx}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    className="group block relative aspect-square rounded-2xl creative-border overflow-hidden bg-white/40 flex items-center justify-center"
+                  >
+                    <Instagram className="w-8 h-8 text-brand-dark/30" />
+                    
+                    <div className="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 p-4 text-center">
+                      <p className="font-bold text-white text-sm">
+                        {handle}
+                      </p>
+                      <span className="text-brand-orange text-xs uppercase tracking-widest font-bold">
+                        View Post
+                      </span>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -786,18 +855,6 @@ function HomePage() {
 
             {/* Image Column */}
             <div className="relative max-w-[260px] sm:max-w-sm md:max-w-md mx-auto lg:max-w-none w-full">
-              {/* SSS Sticker */}
-              <motion.div
-                initial={{ rotate: -25, scale: 0.8, opacity: 0 }}
-                whileInView={{ rotate: -15, scale: 1, opacity: 1 }}
-                viewport={{ amount: 0.5 }}
-                className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 md:-top-12 md:-left-16 z-20 bg-[#f53030] text-[#e9bc8b] px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-6 rounded-[100%] border-[3px] sm:border-[4px] md:border-[6px] border-[#e9bc8b] shadow-[4px_4px_0px_0px_rgba(20,20,20,1)] flex items-center gap-1 sm:gap-2"
-              >
-                <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 fill-current" />
-                <span className="font-display font-black text-2xl sm:text-3xl md:text-5xl tracking-widest italic">SSS</span>
-                <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 fill-current" />
-              </motion.div>
-
               {/* Main Image */}
               <div className="rounded-t-[8rem] sm:rounded-t-[10rem] md:rounded-t-[12rem] rounded-b-[1.5rem] md:rounded-b-[2rem] overflow-hidden creative-border aspect-[3/4] relative z-10 bg-white">
                 <img
@@ -807,16 +864,6 @@ function HomePage() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-
-              {/* Ice Cream Sticker */}
-              <motion.div
-                initial={{ rotate: 25, scale: 0.8, opacity: 0 }}
-                whileInView={{ rotate: 15, scale: 1, opacity: 1 }}
-                viewport={{ amount: 0.5 }}
-                className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 md:-bottom-12 md:-right-12 z-20 text-[4rem] sm:text-[5rem] md:text-[8rem] drop-shadow-[4px_4px_0px_rgba(20,20,20,1)]"
-              >
-                🍦
-              </motion.div>
             </div>
 
             {/* Text Column */}
@@ -876,6 +923,7 @@ export default function App() {
       <Route path='/portfolio' element={<PortfolioPage />} />
       <Route path='/blog' element={<BlogPage />} />
       <Route path='/faq' element={<FAQPage />} />
+      <Route path='/admin' element={<AdminPage />} />
     </Routes>
   );
 }
