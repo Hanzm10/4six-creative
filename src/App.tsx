@@ -11,6 +11,7 @@ import ContactPage from './pages/ContactPage';
 import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import FAQPage from './pages/FAQPage';
+import AdminPage from './pages/AdminPage';
 import Footer from '@/layout/Footer';
 import Navbar from "@/layout/Navbar";
 import { HeroSection } from '@/components/sections/HeroSection';
@@ -52,6 +53,13 @@ const Marquee = ({ items, speed = 20, reverse = false }: { items: string[], spee
 
 function HomePage() {
   const [showSplash, setShowSplash] = useState(true);
+  const [portfolioReels, setPortfolioReels] = useState<string[]>([
+    'https://www.instagram.com/reel/C0hn8OGuEk5/embed/',
+    'https://www.instagram.com/reel/CmMnxhTOqiZ/embed/',
+    'https://www.instagram.com/reel/DVJ7qwBEjSu/embed/',
+    'https://www.instagram.com/reel/DO7EsRUDejI/embed/'
+  ]);
+  const [portfolioVideos, setPortfolioVideos] = useState<any[]>([]);
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,6 +67,17 @@ function HomePage() {
       setShowSplash(false);
     }, 2500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/reels')
+      .then(res => res.json())
+      .then(data => setPortfolioReels(data.map((r: any) => `${r.url}embed/`)))
+      .catch(err => console.error("Error fetching reels:", err));
+    fetch('/api/videos')
+      .then(res => res.json())
+      .then(data => setPortfolioVideos(data))
+      .catch(err => console.error("Error fetching videos:", err));
   }, []);
 
   const { scrollYProgress } = useScroll();
@@ -244,7 +263,7 @@ function HomePage() {
 
       <ProcessSection />
 
-      <VideoShowcaseSection />
+      <VideoShowcaseSection reels={portfolioReels} videos={portfolioVideos} />
 
       <CEOSection />
 
@@ -281,6 +300,7 @@ export default function App() {
       <Route path='/portfolio' element={<PortfolioPage />} />
       <Route path='/blog' element={<BlogPage />} />
       <Route path='/faq' element={<FAQPage />} />
+      <Route path='/admin' element={<AdminPage />} />
     </Routes>
   );
 }

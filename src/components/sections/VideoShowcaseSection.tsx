@@ -12,8 +12,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Instagram } from "lucide-react";
 
-export function VideoShowcaseSection() {
+interface VideoShowcaseSectionProps {
+  reels?: string[];
+  videos?: any[];
+}
+
+export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectionProps) {
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress: videoScroll } = useScroll({
@@ -23,6 +29,17 @@ export function VideoShowcaseSection() {
 
   const topTearY = useTransform(videoScroll, [0, 1], ["0%", "-100%"]);
   const bottomTearY = useTransform(videoScroll, [0, 1], ["0%", "100%"]);
+
+  const defaultReels = [
+    "https://www.instagram.com/reel/C0hn8OGuEk5/embed/",
+    "https://www.instagram.com/reel/CmMnxhTOqiZ/embed/",
+    "https://www.instagram.com/reel/DVJ7qwBEjSu/embed/",
+    "https://www.instagram.com/reel/DO7EsRUDejI/embed/",
+    "https://www.instagram.com/reel/DX7Xn-bPKTq/embed/",
+    "https://www.instagram.com/reel/DO37S78jn9Q/embed/"
+  ];
+
+  const reelsList = reels && reels.length > 0 ? reels : defaultReels;
 
   return (
     <section ref={videoSectionRef} className="py-24 bg-[#d0c3f1] relative">
@@ -78,14 +95,7 @@ export function VideoShowcaseSection() {
           </div>
 
           <CarouselContent className="-ml-6 pb-6">
-            {[
-              "https://www.instagram.com/reel/C0hn8OGuEk5/embed/",
-              "https://www.instagram.com/reel/CmMnxhTOqiZ/embed/",
-              "https://www.instagram.com/reel/DVJ7qwBEjSu/embed/",
-              "https://www.instagram.com/reel/DO7EsRUDejI/embed/",
-              "https://www.instagram.com/reel/DX7Xn-bPKTq/embed/",
-              "https://www.instagram.com/reel/DO37S78jn9Q/embed/"
-            ].map((reelUrl, idx) => (
+            {reelsList.map((reelUrl, idx) => (
               <CarouselItem key={idx} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
                 <div
                   className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
@@ -104,6 +114,67 @@ export function VideoShowcaseSection() {
             ))}
           </CarouselContent>
         </Carousel>
+
+        {videos.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            {videos.map((video, idx) => (
+              <div key={idx} className="rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark">
+                <video src={`/uploads/${video.filename}`} controls className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Social Feed Grid */}
+        <div className="mt-16 md:mt-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-brand-lavender text-brand-dark creative-border-sm font-bold text-sm tracking-widest uppercase mb-6">
+              Follow Along
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-black uppercase text-brand-dark">
+              More From The <span className="text-brand-orange italic">Feed</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {Array.from({ length: 8 }).map((_, idx) => {
+              const isFourSix = idx % 2 === 0;
+              const handle = isFourSix ? '@4sixcreative' : '@troyiamonay';
+              const link = isFourSix ? 'https://instagram.com/4sixcreative' : 'https://instagram.com/troyiamonay';
+
+              return (
+                <motion.a
+                  key={idx}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  className="group block relative aspect-square rounded-2xl creative-border overflow-hidden bg-white/40 flex items-center justify-center"
+                >
+                  <Instagram className="w-8 h-8 text-brand-dark/30" />
+                  
+                  <div className="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 p-4 text-center">
+                    <p className="font-bold text-white text-sm">
+                      {handle}
+                    </p>
+                    <span className="text-brand-orange text-xs uppercase tracking-widest font-bold">
+                      View Post
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
