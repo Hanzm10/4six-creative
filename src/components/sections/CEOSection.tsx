@@ -4,7 +4,6 @@
  */
 
 import { motion } from "motion/react";
-import { Star } from "lucide-react";
 
 export function CEOSection() {
   return (
@@ -14,18 +13,6 @@ export function CEOSection() {
 
           {/* Image Column */}
           <div className="relative max-w-[260px] sm:max-w-sm md:max-w-md mx-auto lg:max-w-none w-full">
-            {/* SSS Sticker */}
-            <motion.div
-              initial={{ rotate: -25, scale: 0.8, opacity: 0 }}
-              whileInView={{ rotate: -15, scale: 1, opacity: 1 }}
-              viewport={{ amount: 0.5 }}
-              className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 md:-top-12 md:-left-16 z-20 bg-[#f53030] text-[#e9bc8b] px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-6 rounded-[100%] border-[3px] sm:border-[4px] md:border-[6px] border-[#e9bc8b] shadow-[4px_4px_0px_0px_rgba(20,20,20,1)] flex items-center gap-1 sm:gap-2"
-            >
-              <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 fill-current" />
-              <span className="font-display font-black text-2xl sm:text-3xl md:text-5xl tracking-widest italic">SSS</span>
-              <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 fill-current" />
-            </motion.div>
-
             {/* Main Image */}
             <div className="rounded-t-[8rem] sm:rounded-t-[10rem] md:rounded-t-[12rem] rounded-b-[1.5rem] md:rounded-b-[2rem] overflow-hidden creative-border aspect-[3/4] relative z-10 bg-white">
               <img
@@ -35,16 +22,6 @@ export function CEOSection() {
                 referrerPolicy="no-referrer"
               />
             </div>
-
-            {/* Ice Cream Sticker */}
-            <motion.div
-              initial={{ rotate: 25, scale: 0.8, opacity: 0 }}
-              whileInView={{ rotate: 15, scale: 1, opacity: 1 }}
-              viewport={{ amount: 0.5 }}
-              className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 md:-bottom-12 md:-right-12 z-20 text-[4rem] sm:text-[5rem] md:text-[8rem] drop-shadow-[4px_4px_0px_rgba(20,20,20,1)]"
-            >
-              🍦
-            </motion.div>
           </div>
 
           {/* Text Column */}
