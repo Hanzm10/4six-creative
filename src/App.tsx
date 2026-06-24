@@ -900,7 +900,7 @@ function HomePage() {
               Application Form
             </div>
             <h2 className="text-[clamp(3rem,8vw,6rem)] text-brand-dark mb-6 font-serif italic tracking-tight leading-none">
-              Join the <span className="text-brand-orange font-display not-italic font-black">Roster.</span>
+              Work With <span className="text-brand-orange">Us.</span>
             </h2>
           </div>
 

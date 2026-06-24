@@ -212,7 +212,7 @@ export default function ContactPage() {
               Application Form
             </div>
             <h2 className='text-[clamp(2.5rem,8vw,6rem)] text-brand-dark mb-6 font-serif italic tracking-tight leading-none'>
-              Join the <span className='text-brand-orange font-display not-italic font-black'>Roster.</span>
+              Work With <span className='text-brand-orange'>Us.</span>
             </h2>
             <p className='text-brand-dark/60 text-lg max-w-xl mx-auto'>
               We review every application personally. Spots are limited — if you're ready, apply now.
