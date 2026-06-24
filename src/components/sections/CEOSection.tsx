@@ -60,10 +60,10 @@ export function CEOSection() {
                 Growing up, I was never the kid bringing home trophies or pulling straight A's. I didn't stick to one thing for long, and I genuinely thought something was wrong with me. Turns out, I just liked a lot of things a little bit.
               </p>
               <p>
-                <strong className="text-brand-dark font-bold">& That is exactly why social media management clicked for me.</strong> It didn't require being the absolute best at one singular skill. It rewards being good at many different things— and that is what has made me great (and able to make a lot of money).
+                <strong className="text-brand-dark font-bold">And that is exactly why social media management clicked for me.</strong> It didn't require being the absolute best at one singular skill. It rewards being good at many different things— and that is what has made me great (and able to make a lot of money).
               </p>
               <p>
-                Then I started sharing my story, and I was amazed after I received hundreds of DM's from other women said "that's exactly how I feel."
+                Then I started sharing my story, and I was amazed after I received hundreds of DMs from other women who said "that's exactly how I feel."
               </p>
             </div>
           </div>
