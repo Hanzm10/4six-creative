@@ -23,8 +23,7 @@ export function SocialFeedSection() {
             On The <span className="text-brand-orange italic">Feed</span>
           </h2>
           <p className="text-white/60 text-lg md:text-xl font-sans">
-            Stay inspired with our latest projects, design tips, and a 
-            peek behind the scenes of our creative studio.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.
           </p>
         </motion.div>
 

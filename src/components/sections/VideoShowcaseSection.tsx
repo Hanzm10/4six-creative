@@ -12,7 +12,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Instagram } from "lucide-react";
+import { Instagram, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface VideoShowcaseSectionProps {
   reels?: string[];
@@ -96,7 +98,7 @@ export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectio
 
           <CarouselContent className="-ml-6 pb-6">
             {reelsList.map((reelUrl, idx) => (
-              <CarouselItem key={idx} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
+              <CarouselItem key={`reel-${idx}`} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
                 <div
                   className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
                 >
@@ -112,21 +114,32 @@ export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectio
                 </div>
               </CarouselItem>
             ))}
+            {videos.map((video, idx) => (
+              <CarouselItem key={`video-${idx}`} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
+                <div
+                  className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
+                >
+                  <video
+                    src={`/uploads/${video.filename}`}
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
 
-        {videos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-            {videos.map((video, idx) => (
-              <div key={idx} className="rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark">
-                <video src={`/uploads/${video.filename}`} controls className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="flex justify-center mt-12">
+          <Link to="/portfolio">
+            <Button className="bg-brand-dark text-white hover:bg-brand-orange rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border-sm creative-border-hover transition-all flex items-center gap-2">
+              View Full Portfolio <ArrowRight className="w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
 
         {/* Social Feed Grid */}
-        <div className="mt-16 md:mt-24">
+        {/* <div className="mt-16 md:mt-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +187,7 @@ export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectio
               );
             })}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

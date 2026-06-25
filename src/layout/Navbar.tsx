@@ -15,6 +15,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
     { label: 'FAQ', href: '/faq' },
+    { label: 'Admin', href: '/admin' },
   ];
 
   return (
@@ -53,20 +54,11 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
               </a>
             )
           )}
-          {isHome ? (
-            <Button
-              onClick={onContactClick}
-              className='bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover'
-            >
+          <Link to='/contact#work-with-us'>
+            <Button className='bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover'>
               Let's Talk
             </Button>
-          ) : (
-            <Link to='/contact'>
-              <Button className='bg-brand-dark text-white hover:bg-brand-orange creative-border-sm creative-border-hover'>
-                Let's Talk
-              </Button>
-            </Link>
-          )}
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -108,20 +100,11 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
                 </a>
               )
             )}
-            {isHome ? (
-              <Button
-                onClick={() => { setIsMenuOpen(false); onContactClick?.(); }}
-                className='w-full bg-brand-dark text-white py-6 text-lg'
-              >
+            <Link to='/contact#work-with-us' onClick={() => setIsMenuOpen(false)}>
+              <Button className='w-full bg-brand-dark text-white py-6 text-lg'>
                 Let's Talk
               </Button>
-            ) : (
-              <Link to='/contact' onClick={() => setIsMenuOpen(false)}>
-                <Button className='w-full bg-brand-dark text-white py-6 text-lg'>
-                  Let's Talk
-                </Button>
-              </Link>
-            )}
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

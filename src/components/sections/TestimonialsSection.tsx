@@ -6,28 +6,28 @@ const testimonials = [
     name: "Jasmine R.",
     handle: "@jasminebeautyco",
     role: "Beauty Brand Founder",
-    quote: "4Six Creative completely transformed our Instagram presence. Within 3 months we went from 2K to 18K followers and our DMs were flooded with inquiries. They don't just post — they build a brand.",
+    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
     accent: "bg-brand-lavender",
   },
   {
     name: "Marcus T.",
     handle: "@marcusfitlife",
     role: "Fitness Coach",
-    quote: "I was skeptical at first but the results speak for themselves. My content finally looks like it belongs next to the biggest names in the industry. ROI has been insane.",
+    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
     accent: "bg-brand-peach",
   },
   {
     name: "Priya S.",
     handle: "@priyaeats",
     role: "Food Creator & Restaurateur",
-    quote: "The strategy they built for us was unlike anything I'd seen. Every post has a purpose. We sold out our pop-up event in under 48 hours purely through social.",
+    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.",
     accent: "bg-brand-green",
   },
   {
     name: "Derek W.",
     handle: "@derekwlifestyle",
     role: "Lifestyle Influencer",
-    quote: "Working with 4Six feels like having an in-house creative team that actually gets your vision. The visuals, the captions, the timing — everything is dialed in.",
+    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
     accent: "bg-brand-orange",
   },
 ];
@@ -71,7 +71,7 @@ export function TestimonialsSection() {
             </h2>
           </div>
           <p className="max-w-sm text-brand-dark/70 text-base md:text-lg">
-            Don't take our word for it. Here's what happens when strategy meets creativity.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
           </p>
         </motion.div>
 

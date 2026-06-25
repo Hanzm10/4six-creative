@@ -1,46 +1,47 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Palette, TrendingUp, Video, MessageSquare, Search, Repeat2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
     icon: Palette,
     title: "Brand Identity",
-    description: "Logos, color systems, and visual guidelines that make your brand instantly recognizable across every platform.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
     accent: "bg-brand-lavender",
     iconColor: "text-brand-dark",
   },
   {
     icon: TrendingUp,
     title: "Growth Strategy",
-    description: "Data-backed roadmaps tailored to your niche. We identify your audience, study competitors, and build a plan that scales.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.",
     accent: "bg-brand-orange",
     iconColor: "text-white",
   },
   {
     icon: Video,
     title: "Video & Reels",
-    description: "Short-form video production optimized for TikTok, Instagram Reels, and YouTube Shorts. Hook, hold, convert.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
     accent: "bg-brand-peach",
     iconColor: "text-brand-dark",
   },
   {
     icon: MessageSquare,
     title: "Community Management",
-    description: "We engage your audience daily — responding, nurturing, and turning followers into loyal brand advocates.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     accent: "bg-brand-green",
     iconColor: "text-white",
   },
   {
     icon: Search,
     title: "SEO & Discoverability",
-    description: "Hashtag research, keyword optimization, and platform algorithm alignment so new audiences actually find you.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     accent: "bg-brand-lavender",
     iconColor: "text-brand-dark",
   },
   {
     icon: Repeat2,
     title: "Content Repurposing",
-    description: "One piece of content, maximum reach. We atomize your best work across every channel without losing quality.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.",
     accent: "bg-brand-dark",
     iconColor: "text-brand-orange",
   },
@@ -85,7 +86,7 @@ export function ServiceOverviewSection() {
             <span className="text-brand-orange italic">Brand Needs</span>
           </h2>
           <p className="text-base md:text-lg text-brand-dark/70">
-            From first impression to lasting loyalty — we cover every touchpoint of your digital presence.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
           </p>
         </motion.div>
 
@@ -130,15 +131,15 @@ export function ServiceOverviewSection() {
               Not sure where to start?
             </h3>
             <p className="text-white/60 text-base md:text-lg">
-              Let's talk. We'll figure out exactly what your brand needs.
+              Lorem ipsum dolor sit. Consectetur adipiscing elit, sed do.
             </p>
           </div>
-          <a
-            href="/#contact"
+          <Link
+            to="/contact#book-session"
             className="bg-brand-orange text-white font-display font-bold uppercase px-8 py-4 rounded-2xl creative-border-sm whitespace-nowrap hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform duration-200 text-base md:text-lg"
           >
             Book a Free Call →
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -83,7 +83,7 @@ export default function BlogPage() {
               Creative <br /><span className='text-brand-orange italic'>Notes.</span>
             </h1>
             <p className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-2xl'>
-              Strategy, design, and behind-the-scenes from the 4SIX CREATIVE studio. No fluff — just what's actually moving the needle right now.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.
             </p>
           </motion.div>
         </div>
@@ -202,16 +202,16 @@ export default function BlogPage() {
               <br />Let's Build Together.
             </h2>
             <p className='text-white/60 text-xl max-w-xl leading-relaxed'>
-              Whether you're ready to apply or just want to chat — we're here for it.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
             </p>
             <div className='flex flex-wrap gap-4 justify-center'>
-              <Link to='/contact'>
+              <Link to='/contact#work-with-us'>
                 <Button className='bg-brand-orange text-white hover:bg-brand-peach rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border-sm creative-border-hover transition-colors flex items-center gap-2'>
                   Work With Us <ArrowRight className='w-5 h-5' />
                 </Button>
               </Link>
               <Link to='/faq'>
-                <Button className='bg-transparent text-white border-2 border-white/40 hover:border-white rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest transition-all'>
+                <Button variant='outline' className='rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest border-white/30 text-white hover:bg-white hover:text-brand-dark hover:border-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-brand-dark dark:hover:border-white transition-colors'>
                   Browse FAQ
                 </Button>
               </Link>

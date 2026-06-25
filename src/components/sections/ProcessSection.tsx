@@ -14,16 +14,16 @@ export function ProcessSection() {
             Our <span className="text-brand-lavender italic">Creative</span> Workflow
           </h2>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-            How we turn your vision into a high-performing digital ecosystem.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.
           </p>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8">
           {[
-            { step: "01", title: "Discovery", desc: "Deep dive into your brand, goals, and audience.", color: "bg-brand-lavender" },
-            { step: "02", title: "Strategy", desc: "Crafting a unique roadmap for your social growth.", color: "bg-brand-peach" },
-            { step: "03", title: "Execution", desc: "High-quality content creation and distribution.", color: "bg-brand-green" },
-            { step: "04", title: "Optimization", desc: "Analyzing data to scale what works best.", color: "bg-brand-orange" }
+            { step: "01", title: "Discovery", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing.", color: "bg-brand-lavender" },
+            { step: "02", title: "Strategy", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing.", color: "bg-brand-peach" },
+            { step: "03", title: "Execution", desc: "Lorem ipsum dolor sit amet.", color: "bg-brand-green" },
+            { step: "04", title: "Optimization", desc: "Lorem ipsum dolor sit amet, consectetur.", color: "bg-brand-orange" }
           ].map((item, idx) => (
             <motion.div
               key={idx}

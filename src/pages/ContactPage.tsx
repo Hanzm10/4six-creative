@@ -1,7 +1,10 @@
 import Navbar from '@/layout/Navbar';
+import Footer from '@/layout/Footer';
 import { motion } from 'motion/react';
 import { ArrowRight, Mail, Clock, Instagram, Youtube, MessageSquare, Send, CalendarDays, CheckCircle2 } from 'lucide-react';
 import { ApplicationForm } from '@/components/forms/ApplicationForm';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { BookingForm } from '@/components/forms/BookingForm';
 import { Button } from '@/components/ui/button';
@@ -30,23 +33,39 @@ const contactInfo = [
 const faqs = [
   {
     q: 'How does the application process work?',
-    a: 'Fill out the form below. We review every submission and reach out within 48 hours to schedule a discovery call.',
+    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolor.',
   },
   {
     q: 'Do you work with brands outside the US?',
-    a: 'Absolutely. We work with brands globally — social media has no borders.',
+    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
   },
   {
     q: 'What industries do you specialise in?',
-    a: 'We work best with lifestyle, beauty, wellness, and personal brands — but great energy is our only real requirement.',
+    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
   },
   {
     q: 'Are spots always available?',
-    a: 'We keep our roster intentionally small to give every client maximum attention. Availability is limited and changes monthly.',
+    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqu.',
   },
 ];
 
 export default function ContactPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#work-with-us' || location.hash === '#book-session') {
+      const id = location.hash.slice(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className='min-h-screen bg-brand-light overflow-x-hidden'>
       <Navbar />
@@ -67,7 +86,7 @@ export default function ContactPage() {
               Let's Build <br /><span className='text-brand-orange italic'>Something</span> Real.
             </h1>
             <p className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-2xl'>
-              Ready to stop blending in? Fill out the application below and let's talk about what your brand is capable of.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolor.
             </p>
           </motion.div>
         </div>
@@ -118,7 +137,7 @@ export default function ContactPage() {
               Not Ready to <br /><span className='text-brand-orange italic'>Apply Yet?</span>
             </h2>
             <p className='text-xl text-brand-dark/70 leading-relaxed mb-10 max-w-lg'>
-              Have a specific question or a unique inquiry? Drop us a message below and we'll get back to you shortly.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.
             </p>
             
             <div className='space-y-6'>
@@ -156,7 +175,7 @@ export default function ContactPage() {
       </section>
 
       {/* Booking Section */}
-      <section className='py-24 bg-brand-light grid-bg px-6'>
+      <section id="book-session" className='py-24 bg-brand-light grid-bg px-6'>
         <div className='max-w-7xl mx-auto lg:grid lg:grid-cols-2 gap-16 items-center'>
           {/* Left Column */}
           <motion.div
@@ -173,7 +192,7 @@ export default function ContactPage() {
               Ready to <br /><span className='text-brand-orange italic font-display font-black uppercase'>Level Up?</span>
             </h2>
             <p className='text-xl text-brand-dark/70 leading-relaxed mb-10 max-w-lg'>
-              Schedule a focused session with our team to audit your brand, refine your strategy, or plan your next big move.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.
             </p>
             
             <div className='space-y-6'>
@@ -205,7 +224,7 @@ export default function ContactPage() {
       </section>
 
       {/* Application Form */}
-      <section className='py-24 bg-brand-light grid-bg relative overflow-hidden'>
+      <section id="work-with-us" className='py-24 bg-brand-light grid-bg relative overflow-hidden'>
         <div className='max-w-7xl mx-auto px-6 relative z-10'>
           <div className='text-center mb-16'>
             <div className='inline-block bg-brand-lavender text-brand-dark border-2 border-brand-dark px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]'>
@@ -215,7 +234,7 @@ export default function ContactPage() {
               Work With <span className='text-brand-orange'>Us.</span>
             </h2>
             <p className='text-brand-dark/60 text-lg max-w-xl mx-auto'>
-              We review every application personally. Spots are limited — if you're ready, apply now.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid.
             </p>
           </div>
           <ApplicationForm />
@@ -288,6 +307,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
