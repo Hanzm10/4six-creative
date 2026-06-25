@@ -1,7 +1,9 @@
 import Navbar from '@/layout/Navbar';
 import { motion } from 'motion/react';
-import { ArrowRight, Mail, Clock, Instagram, Youtube, MessageSquare } from 'lucide-react';
+import { ArrowRight, Mail, Clock, Instagram, Youtube, MessageSquare, Send, CalendarDays, CheckCircle2 } from 'lucide-react';
 import { ApplicationForm } from '@/components/forms/ApplicationForm';
+import { ContactForm } from '@/components/forms/ContactForm';
+import { BookingForm } from '@/components/forms/BookingForm';
 import { Button } from '@/components/ui/button';
 
 const contactInfo = [
@@ -95,6 +97,110 @@ export default function ContactPage() {
               </motion.div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Quick Contact Section */}
+      <section className='py-24 bg-white px-6'>
+        <div className='max-w-7xl mx-auto lg:grid lg:grid-cols-2 gap-16 items-center'>
+          {/* Left Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className='mb-12 lg:mb-0'
+          >
+            <div className='inline-block bg-brand-peach text-brand-dark border-2 border-brand-dark px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]'>
+              Quick Message
+            </div>
+            <h2 className='text-[clamp(2.5rem,6vw,5rem)] font-display font-black uppercase tracking-tighter text-brand-dark leading-none mb-8'>
+              Not Ready to <br /><span className='text-brand-orange italic'>Apply Yet?</span>
+            </h2>
+            <p className='text-xl text-brand-dark/70 leading-relaxed mb-10 max-w-lg'>
+              Have a specific question or a unique inquiry? Drop us a message below and we'll get back to you shortly.
+            </p>
+            
+            <div className='space-y-6'>
+              <div className='flex items-center gap-4'>
+                <div className='w-12 h-12 rounded-xl bg-brand-lavender creative-border-sm flex items-center justify-center shrink-0'>
+                  <Mail className='w-5 h-5 text-brand-dark' />
+                </div>
+                <div>
+                  <p className='text-brand-dark/40 text-xs font-bold uppercase tracking-widest'>Email Address</p>
+                  <p className='text-brand-dark font-bold text-lg'>hello@4sixcreative.com</p>
+                </div>
+              </div>
+              <div className='flex items-center gap-4'>
+                <div className='w-12 h-12 rounded-xl bg-brand-lavender creative-border-sm flex items-center justify-center shrink-0'>
+                  <Send className='w-5 h-5 text-brand-dark' />
+                </div>
+                <div>
+                  <p className='text-brand-dark/40 text-xs font-bold uppercase tracking-widest'>Response Time</p>
+                  <p className='text-brand-dark font-bold text-lg'>Within 24–48 hours</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <ContactForm />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Booking Section */}
+      <section className='py-24 bg-brand-light grid-bg px-6'>
+        <div className='max-w-7xl mx-auto lg:grid lg:grid-cols-2 gap-16 items-center'>
+          {/* Left Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className='mb-12 lg:mb-0'
+          >
+            <div className='inline-block bg-brand-green text-brand-dark border-2 border-brand-dark px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]'>
+              Book a Session
+            </div>
+            <h2 className='text-[clamp(2.5rem,6vw,5rem)] font-display font-black uppercase tracking-tighter text-brand-dark leading-none mb-8'>
+              Ready to <br /><span className='text-brand-orange italic font-display font-black uppercase'>Level Up?</span>
+            </h2>
+            <p className='text-xl text-brand-dark/70 leading-relaxed mb-10 max-w-lg'>
+              Schedule a focused session with our team to audit your brand, refine your strategy, or plan your next big move.
+            </p>
+            
+            <div className='space-y-6'>
+              {[
+                { icon: CalendarDays, label: 'Free 30-min session' },
+                { icon: Clock, label: 'We come prepared' },
+                { icon: CheckCircle2, label: 'No obligation' }
+              ].map((item, i) => (
+                <div key={i} className='flex items-center gap-4'>
+                  <div className='w-12 h-12 rounded-xl bg-brand-lavender creative-border-sm flex items-center justify-center shrink-0'>
+                    <item.icon className='w-5 h-5 text-brand-dark' />
+                  </div>
+                  <p className='text-brand-dark font-bold text-lg'>{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <BookingForm />
+          </motion.div>
         </div>
       </section>
 
