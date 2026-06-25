@@ -4,7 +4,7 @@
  */
 
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -17,11 +17,11 @@ import Navbar from "@/layout/Navbar";
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ServiceOverviewSection } from '@/components/sections/ServiceOverviewSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
-import { PortfolioSection } from '@/components/sections/PortfolioSection';
+// import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { VideoShowcaseSection } from '@/components/sections/VideoShowcaseSection';
 import { CEOSection } from '@/components/sections/CEOSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { ApplicationForm } from '@/components/forms/ApplicationForm';
+// import { ApplicationForm } from '@/components/forms/ApplicationForm';
 import {
   ArrowRight,
   Sparkles,
@@ -133,12 +133,13 @@ function HomePage() {
           animate={{ y: 0, opacity: 1 }}
           className="fixed bottom-6 right-6 z-40 md:hidden"
         >
-          <Button
-            onClick={scrollToContact}
-            className="rounded-full w-16 h-16 bg-brand-orange text-white creative-border shadow-xl flex items-center justify-center p-0"
-          >
-            <Send className="w-7 h-7" />
-          </Button>
+          <Link to="/contact#work-with-us">
+            <Button
+              className="rounded-full w-16 h-16 bg-brand-orange text-white creative-border shadow-xl flex items-center justify-center p-0"
+            >
+              <Send className="w-7 h-7" />
+            </Button>
+          </Link>
         </motion.div>
       </AnimatePresence>
 
@@ -156,7 +157,7 @@ function HomePage() {
             <div className="max-w-2xl">
               <h2 className="text-[clamp(2.5rem,6vw,5rem)] mb-6 uppercase leading-none">Our Creative <br /><span className="text-brand-orange italic">Arsenal</span></h2>
               <p className="text-base sm:text-lg md:text-xl text-brand-dark/80">
-                We don't just post. We strategize, design, and execute campaigns that resonate with your audience and drive real growth.
+                Lorem ipsum dolor sit. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
             <div className="bg-brand-lavender p-6 rounded-2xl creative-border-sm rotate-3 hidden md:block">
@@ -176,7 +177,7 @@ function HomePage() {
               <div className="relative z-10">
                 <Badge className="bg-white text-brand-dark border-brand-dark mb-6">Most Popular</Badge>
                 <h3 className="text-2xl md:text-5xl mb-6 uppercase">Full-Service <br />Management</h3>
-                <p className="text-lg mb-8 max-w-md">Complete social media ecosystem management. From strategy to execution, we handle it all so you can focus on your business.</p>
+                <p className="text-lg mb-8 max-w-md">Lorem ipsum dolor sit amet, consectetur adipiscing. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <Button className="bg-brand-dark text-white creative-border-sm pointer-events-none">Get Started</Button>
               </div>
               <Globe className="absolute -bottom-10 -right-10 w-64 h-64 text-brand-dark/10 group-hover:rotate-12 transition-transform duration-500" />
@@ -195,7 +196,7 @@ function HomePage() {
                   <Smile className="w-7 h-7 text-brand-orange" />
                 </div>
                 <h3 className="text-3xl mb-4 uppercase">Social Media <br />Marketing</h3>
-                <p className="text-brand-dark/70">Strategic organic growth, engagement, and brand building across all major platforms.</p>
+                <p className="text-brand-dark/70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
               </div>
               <ArrowRight className="mt-8 w-8 h-8 self-end" />
             </motion.a>
@@ -213,7 +214,7 @@ function HomePage() {
                   <Sparkles className="w-7 h-7 text-brand-green" />
                 </div>
                 <h3 className="text-3xl mb-4 uppercase">Content <br />Creation</h3>
-                <p className="text-brand-dark/70">Thumb-stopping aesthetics, photos, videos, UGC, and visual storytelling that converts.</p>
+                <p className="text-brand-dark/70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
               </div>
               <ArrowRight className="mt-8 w-8 h-8 self-end" />
             </motion.a>
@@ -231,7 +232,7 @@ function HomePage() {
                   <Target className="w-7 h-7 text-brand-orange" />
                 </div>
                 <h3 className="text-3xl mb-4 uppercase">Content <br />Strategy</h3>
-                <p className="text-white/80">Data-driven roadmaps and visual voice planning aligned with audience intent.</p>
+                <p className="text-white/80">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
               </div>
               <ArrowRight className="mt-8 w-8 h-8 self-end text-white" />
             </motion.a>
@@ -249,7 +250,7 @@ function HomePage() {
                   <Rocket className="w-7 h-7 text-brand-orange" />
                 </div>
                 <h3 className="text-3xl mb-4 uppercase">Marketing <br />Campaigns</h3>
-                <p className="text-brand-dark/70">High-impact organic campaigns designed to scale reach and foster strong community.</p>
+                <p className="text-brand-dark/70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
               </div>
               <ArrowRight className="mt-8 w-8 h-8 self-end" />
             </motion.a>
@@ -259,7 +260,7 @@ function HomePage() {
 
       <ServiceOverviewSection />
 
-      <PortfolioSection />
+      {/* <PortfolioSection /> */}
 
       <ProcessSection />
 
@@ -269,19 +270,43 @@ function HomePage() {
 
       <TestimonialsSection />
 
-      {/* Lead Capture Section */}
-      <section ref={contactRef} id="contact" className="py-24 bg-brand-light grid-bg relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-block bg-brand-lavender text-brand-dark border-2 border-brand-dark px-4 py-1 rounded-full font-bold mb-6 text-sm tracking-widest uppercase shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
-              Application Form
+      {/* Work With Us CTA Section */}
+      <section className="py-16 md:py-24 bg-brand-light relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-brand-dark rounded-[2.5rem] creative-border p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden"
+          >
+            {/* Background design elements to look extremely premium */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-brand-lavender/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="relative z-10 max-w-2xl text-center lg:text-left">
+              <span className="font-accent text-brand-orange uppercase tracking-widest text-sm font-semibold mb-3 block">
+                Next Steps
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black uppercase text-white mb-6 leading-tight">
+                Ready to make some <br className="hidden md:inline" />
+                <span className="text-brand-orange italic font-serif lowercase font-normal">noise?</span>
+              </h2>
+              <p className="text-white/70 text-base md:text-lg max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+              </p>
             </div>
-            <h2 className="text-[clamp(3rem,8vw,6rem)] text-brand-dark mb-6 font-serif italic tracking-tight leading-none">
-              Work With <span className="text-brand-orange">Us.</span>
-            </h2>
-          </div>
 
-          <ApplicationForm />
+            <div className="relative z-10 flex-shrink-0">
+              <Link
+                to="/contact#work-with-us"
+                className="inline-flex items-center gap-3 bg-brand-orange text-white hover:bg-white hover:text-brand-dark font-display font-bold uppercase px-8 py-5 rounded-2xl creative-border-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-300 text-base md:text-lg shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
+              >
+                Work With Us
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

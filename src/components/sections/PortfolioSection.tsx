@@ -16,7 +16,7 @@ export function PortfolioSection() {
           <div>
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] mb-6 uppercase leading-none">Impactful <br /><span className="text-brand-green">Results</span></h2>
             <p className="text-base sm:text-lg md:text-xl text-brand-dark/80 max-w-xl">
-              A glimpse into how we've transformed brands into social media powerhouses through creative innovation.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
             </p>
           </div>
           <Button variant="outline" className="creative-border creative-border-hover bg-white text-lg px-8 py-6">View All Projects</Button>
