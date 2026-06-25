@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface AdminLoginProps {
   onLogin: (token: string) => void;
@@ -112,6 +113,13 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
               )}
             </Button>
           </form>
+
+          <Link
+            to="/"
+            className="mt-6 text-sm font-bold uppercase tracking-wider text-brand-dark/50 hover:text-brand-orange transition-colors duration-200"
+          >
+            &larr; Back to Home
+          </Link>
         </div>
         
         <p className="mt-8 text-center text-brand-dark/40 text-xs uppercase tracking-widest font-medium">

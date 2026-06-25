@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -92,14 +93,15 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
 
             <div className="flex flex-col items-start lg:items-end text-left lg:text-right max-w-sm pb-4 md:pb-12 lg:pr-12">
               <p className="text-[#f04d21] font-mono text-sm md:text-base uppercase tracking-widest mb-6 font-bold leading-relaxed">
-                Bright and bold<br />are in demand this<br />season.
+                Lorem ipsum<br />dolor sit amet,<br />consectetur.
               </p>
-              <Button
-                onClick={onContactClick}
-                className="bg-[#f04d21] text-white hover:bg-brand-dark rounded-none px-8 py-6 text-sm md:text-base font-bold uppercase tracking-widest transition-colors"
-              >
-                Shop The Style
-              </Button>
+              <Link to="/contact#work-with-us">
+                <Button
+                  className="bg-[#f04d21] text-white hover:bg-brand-dark rounded-none px-8 py-6 text-sm md:text-base font-bold uppercase tracking-widest transition-colors"
+                >
+                  Work With Us
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
