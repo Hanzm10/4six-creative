@@ -79,7 +79,7 @@ export default function AdminPage() {
               Manage Content
             </h2>
             <p className="text-brand-dark/40 font-bold uppercase tracking-[0.2em] text-xs">
-              Portfolio & Social Feed Control
+              Lorem ipsum dolor sit amet, co.
             </p>
           </header>
 

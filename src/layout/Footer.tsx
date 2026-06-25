@@ -10,7 +10,7 @@ export default function Footer() {
               <img src="/4six-creative-logo-white.png" alt="4SIX CREATIVE" className="h-full object-contain" />
             </div>
             <p className="text-white/80 text-lg md:text-xl max-w-md mb-8 md:mb-10 leading-relaxed">
-              A social media marketing agency that balances corporate precision with creative flair. We build brands that matter in a digital-first world.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
             </p>
             <div className="flex gap-4 md:gap-6">
               {[

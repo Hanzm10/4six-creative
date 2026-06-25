@@ -31,16 +31,16 @@ export function CEOSection() {
             </h2>
             <div className="space-y-4 md:space-y-6 text-base sm:text-lg md:text-xl text-brand-dark/90 leading-relaxed font-medium text-left">
               <p>
-                I left teaching in 2020 to build a business for the first time, and it didn't take long to realize I'd found something that actually fit my personality more than any job ever had before.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
               </p>
               <p>
-                Growing up, I was never the kid bringing home trophies or pulling straight A's. I didn't stick to one thing for long, and I genuinely thought something was wrong with me. Turns out, I just liked a lot of things a little bit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
               <p>
-                <strong className="text-brand-dark font-bold">And that is exactly why social media management clicked for me.</strong> It didn't require being the absolute best at one singular skill. It rewards being good at many different things— and that is what has made me great (and able to make a lot of money).
+                <strong className="text-brand-dark font-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong> Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute.
               </p>
               <p>
-                Then I started sharing my story, and I was amazed after I received hundreds of DMs from other women who said "that's exactly how I feel."
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
               </p>
             </div>
           </div>
