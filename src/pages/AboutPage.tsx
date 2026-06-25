@@ -1,7 +1,10 @@
 import Navbar from '@/layout/Navbar';
+import Footer from '@/layout/Footer';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const stats = [
   { value: '4+', label: 'Years in Business' },
@@ -13,31 +16,33 @@ const stats = [
 const timeline = [
   {
     year: '2020',
-    title: 'Left the Classroom',
-    desc: 'After years of teaching, Troyia took the leap and started her first business — not knowing it would change everything.',
+    title: 'Lorem ipsum dolors',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
     color: 'bg-brand-lavender',
   },
   {
     year: '2021',
-    title: 'Found Her Lane',
-    desc: 'Social media management clicked instantly. It rewarded being great at many things — exactly how she was wired.',
+    title: 'Lorem ipsum do',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore mag.',
     color: 'bg-brand-peach',
   },
   {
     year: '2022',
-    title: 'Built the Community',
-    desc: 'Hundreds of DMs from women saying "that is exactly how I feel" turned into a movement of multi-passionate entrepreneurs.',
+    title: 'Lorem ipsum dolor s',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed.',
     color: 'bg-brand-green',
   },
   {
     year: '2024',
-    title: '4SIX CREATIVE',
-    desc: 'A full-service social media agency built on bold energy, creative flair, and real results for brands that want to matter.',
+    title: 'Lorem ipsum d',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed.',
     color: 'bg-brand-orange',
   },
 ];
 
 export default function AboutPage() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   return (
     <div className='min-h-screen bg-brand-light'>
       <Navbar />
@@ -58,7 +63,7 @@ export default function AboutPage() {
               Not Your <br /><span className='text-brand-orange italic'>Typical</span> Agency.
             </h1>
             <p className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-2xl'>
-              4SIX CREATIVE was born from a teacher who refused to fit into one box — and built a brand that celebrates exactly that.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna liqu.
             </p>
           </motion.div>
         </div>
@@ -98,7 +103,7 @@ export default function AboutPage() {
           >
             <div className='text-[8rem] leading-none font-display font-black text-brand-orange/20 absolute -top-8 -left-4 select-none'>&ldquo;</div>
             <blockquote className='text-[clamp(1.5rem,3.5vw,2.5rem)] font-display font-bold text-brand-dark leading-snug tracking-tight pl-8 md:pl-16 relative z-10'>
-              Social media management did not require being the absolute best at one singular skill. It rewards being good at many different things — and that is what has made me great.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit.
             </blockquote>
             <div className='mt-8 pl-8 md:pl-16 flex items-center gap-4'>
               <div className='w-12 h-12 rounded-full bg-brand-orange creative-border-sm flex items-center justify-center font-display font-black text-white text-sm shrink-0'>
@@ -158,25 +163,27 @@ export default function AboutPage() {
               Ready to Build <br /><span className='text-brand-orange italic'>Something Real?</span>
             </h2>
             <p className='text-white/60 text-xl mb-10 max-w-xl mx-auto leading-relaxed'>
-              Join the roster of brands that trusted 4SIX CREATIVE to make them impossible to scroll past.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <div className='flex flex-col sm:flex-row gap-4 justify-center items-center w-full'>
-                <a href='/#contact'>
+                <Link to='/contact#work-with-us'>
                   <Button className='bg-brand-orange text-white hover:bg-brand-lavender rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border-sm creative-border-hover transition-colors flex items-center gap-2'>
                     Apply Now <ArrowRight className='w-5 h-5' />
                   </Button>
-                </a>
-                <a href='/services'>
-                  <Button variant='outline' className='rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest border-white/30 text-white hover:bg-white/10 transition-colors'>
+                </Link>
+                <Link to='/services'>
+                  <Button variant='outline' className='rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest border-white/30 text-white hover:bg-white hover:text-brand-dark hover:border-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-brand-dark dark:hover:border-white transition-colors'>
                     View Services
                   </Button>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

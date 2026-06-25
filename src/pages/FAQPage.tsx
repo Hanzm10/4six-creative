@@ -54,7 +54,7 @@ export default function FAQPage() {
               Got <br /><span className='text-brand-orange italic'>Questions?</span>
             </h1>
             <p className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-2xl'>
-              Real answers about how we work, what we charge, and what to expect. Still stuck? Hit us up directly.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
             </p>
           </motion.div>
         </div>
@@ -138,7 +138,7 @@ export default function FAQPage() {
               Still Have <br /><span className='italic'>Questions?</span>
             </h2>
             <p className='text-white/80 text-xl max-w-xl leading-relaxed'>
-              Our team replies to every message personally — usually within 24 hours.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
             </p>
             <Link to='/contact'>
               <Button className='bg-white text-brand-dark hover:bg-brand-dark hover:text-white rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border-sm transition-all flex items-center gap-2'>

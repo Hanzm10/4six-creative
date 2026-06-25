@@ -1,76 +1,81 @@
 import Navbar from '@/layout/Navbar';
+import Footer from '@/layout/Footer';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Globe, BarChart3, Target, Video, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
     icon: Globe,
     title: 'Full-Service Management',
-    description: 'Complete social media ecosystem management. From strategy to execution, we handle everything so you can focus on your business.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi.',
     tag: 'Most Popular',
     color: 'bg-brand-lavender',
   },
   {
     icon: Sparkles,
     title: 'Visual Design',
-    description: 'Thumb-stopping aesthetics that make your brand impossible to scroll past. Graphics, templates, and on-brand creative assets.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi.',
     tag: 'Creative',
     color: 'bg-brand-peach',
   },
-  {
-    icon: BarChart3,
-    title: 'Performance Ads',
-    description: 'Optimized Meta and TikTok ad campaigns designed to turn impressions into revenue and scale your ROI.',
-    tag: 'Growth',
-    color: 'bg-brand-green',
-  },
+  // {
+  //   icon: BarChart3,
+  //   title: 'Performance Ads',
+  //   description: 'Optimized Meta and TikTok ad campaigns designed to turn impressions into revenue and scale your ROI.',
+  //   tag: 'Growth',
+  //   color: 'bg-brand-green',
+  // },
   {
     icon: Target,
     title: 'Content Strategy',
-    description: 'Data-driven roadmaps that align your brand voice with audience intent. We find the why before the what.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
     tag: 'Strategy',
     color: 'bg-brand-orange',
   },
   {
     icon: Video,
     title: 'Reels & Short-Form Video',
-    description: 'Scroll-stopping Reels and TikToks edited and optimized for maximum reach and engagement.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
     tag: 'Video',
     color: 'bg-brand-lavender',
   },
-  {
-    icon: Users,
-    title: 'Influencer Outreach',
-    description: 'Connecting your brand with the right creators to amplify your message and grow your audience authentically.',
-    tag: 'Outreach',
-    color: 'bg-brand-peach',
-  },
+  // {
+  //   icon: Users,
+  //   title: 'Influencer Outreach',
+  //   description: 'Connecting your brand with the right creators to amplify your message and grow your audience authentically.',
+  //   tag: 'Outreach',
+  //   color: 'bg-brand-peach',
+  // },
 ];
 
 const plans = [
   {
     name: 'Starter',
-    description: 'Perfect for new brands ready to establish their social presence.',
-    features: ['2 platforms managed', 'Content calendar', '12 posts/month', 'Monthly report', 'Email support'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
+    features: ['Lorem ipsum dolor s', 'Lorem ipsum dolo', 'Lorem ipsum do', 'Lorem ipsum do', 'Lorem ipsum d'],
     color: 'bg-brand-lavender',
   },
   {
     name: 'Growth',
-    description: 'For brands serious about scaling their reach and engagement.',
-    features: ['3 platforms managed', 'Full content creation', '20 posts/month', 'Reels editing (4/mo)', 'Bi-weekly strategy calls', 'Priority support'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
+    features: ['Lorem ipsum dolor s', 'Lorem ipsum dolor sit', 'Lorem ipsum do', 'Lorem ipsum dolor si', 'Lorem ipsum dolor sit am', 'Lorem ipsum dolo'],
     color: 'bg-brand-orange',
     featured: true,
   },
   {
     name: 'Premium',
-    description: 'Full-service done-for-you social media domination.',
-    features: ['All platforms managed', 'Unlimited content creation', 'Daily posting', 'Reels + ads management', 'Weekly strategy calls', 'Dedicated account manager'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing e.',
+    features: ['Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet', 'Lorem ipsum d', 'Lorem ipsum dolor sit a', 'Lorem ipsum dolor sit', 'Lorem ipsum dolor sit ame'],
     color: 'bg-brand-green',
   },
 ];
 
 export default function ServicesPage() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   return (
     <div className='min-h-screen bg-brand-light'>
       <Navbar />
@@ -89,7 +94,7 @@ export default function ServicesPage() {
             <h1 className='text-[clamp(2rem,7vw,7rem)] font-display font-black uppercase tracking-tighter text-brand-dark leading-none mb-6'>
               Our Creative <br /><span className='text-brand-orange italic'>Arsenal</span>
             </h1>            <p className='text-xl text-brand-dark/70 max-w-2xl leading-relaxed'>
-              We do not just post. We strategize, design, and execute campaigns that resonate with your audience and drive real growth.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna liqua.
             </p>
           </motion.div>
         </div>
@@ -123,12 +128,12 @@ export default function ServicesPage() {
                   <p className='text-brand-dark/70 leading-relaxed flex-1'>
                     {service.description}
                   </p>
-                  <a
-                    href='/#contact'
+                  <Link
+                    to='/contact#work-with-us'
                     className='inline-flex items-center gap-2 text-brand-orange font-bold text-sm uppercase tracking-widest group-hover:gap-3 transition-all'
                   >
                     Apply Now <ArrowRight className='w-4 h-4' />
-                  </a>
+                  </Link>
                 </motion.div>
               );
             })}
@@ -144,7 +149,7 @@ export default function ServicesPage() {
               Simple <span className='text-brand-orange italic'>Pricing</span>
             </h2>
             <p className='text-xl text-brand-dark/60 max-w-xl mx-auto'>
-              Transparent packages built around your goals. All plans include onboarding and a dedicated strategy session.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolo.
             </p>
           </div>
 
@@ -183,11 +188,11 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                <a href='/#contact'>
+                <Link to='/contact#work-with-us'>
                   <Button className={`w-full rounded-full py-6 font-bold uppercase tracking-widest creative-border-sm creative-border-hover ${plan.featured ? 'bg-brand-orange text-white hover:bg-brand-lavender' : 'bg-brand-dark text-white hover:bg-brand-orange'}`}>
                     Get Started
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -206,16 +211,18 @@ export default function ServicesPage() {
               Ready to Make <br />It Pop?
             </h2>
             <p className='text-white/80 text-xl mb-10 max-w-xl mx-auto'>
-              Apply today and let us build a social media presence your audience cannot ignore.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor u.
             </p>
-            <a href='/#contact'>
+            <Link to='/contact#work-with-us'>
               <Button className='bg-white text-brand-orange hover:bg-brand-dark hover:text-white rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border creative-border-hover transition-colors'>
                 Apply Now <ArrowRight className='ml-2 w-5 h-5 inline' />
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

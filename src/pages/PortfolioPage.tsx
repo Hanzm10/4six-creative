@@ -1,15 +1,17 @@
 import Navbar from '@/layout/Navbar';
+import Footer from '@/layout/Footer';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
     title: 'happywithmeg Branding',
     category: 'Branding & Social',
-    desc: 'Full brand identity refresh and social media takeover for wellness creator happywithmeg.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut.',
     img: 'https://instagram.fmnl17-6.fna.fbcdn.net/v/t51.82787-15/662495685_18149061682479036_8333921998436741835_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&_nc_cat=109&ig_cache_key=Mzg3MzAwMjE2MzM4Nzc4MjU2OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=K9NvUF5kn8wQ7kNvwGmbZX7&_nc_oc=AdpCtYydAqxH9FZAXgxiqUltdxSIFT4kVrC-12A9_9fRuq0hQmQ01bYr1rW4ZlEP8fs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-6.fna&_nc_gid=isA7-3KSiXQdFAXqZExCuQ&_nc_ss=7a32e&oh=00_Af2bgp1SHM5r-bEPSHILUO_hqzzycpr8nTpMnn_9OygRpA&oe=69E564EF',
     color: 'bg-brand-lavender',
     fallbackColor: 'bg-brand-lavender',
@@ -17,7 +19,7 @@ const projects = [
   {
     title: '#Mozination Campaign',
     category: 'Campaign Strategy',
-    desc: 'Viral hashtag campaign strategy and execution that drove massive organic reach across platforms.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
     img: 'https://instagram.fmnl17-3.fna.fbcdn.net/v/t51.82787-15/625257710_18123569827489369_8040625987422691498_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzAyODY5Nzk3MjI3MDgxMTgwNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ijbrQOE4sSYQ7kNvwGmbZX7&_nc_oc=Adpp2HOMFXy2dMRs7i91y_I757RbJmkqHoVuIGdq8gXNQRH4nf-HTZ3DAM6V5xSPKMA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-3.fna&_nc_gid=BddqFSebmAUXWFpFNAG2eA&_nc_ss=7a32e&oh=00_Af2wroqV2qRU2ZOjJJma5h69UxzWMPpHxkNqj1KU4oXXuQ&oe=69E53B75',
     color: 'bg-brand-green',
     fallbackColor: 'bg-brand-green',
@@ -25,7 +27,7 @@ const projects = [
   {
     title: 'Lifestyle Brand Launch',
     category: 'Full-Service Management',
-    desc: 'End-to-end social media launch for a lifestyle brand entering a saturated market.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu.',
     img: '',
     color: 'bg-brand-peach',
     fallbackColor: 'bg-brand-peach',
@@ -33,7 +35,7 @@ const projects = [
   {
     title: 'Reels Growth Sprint',
     category: 'Reels & Video',
-    desc: 'Six-week Reels sprint that tripled engagement and grew follower count by 40% for a beauty brand.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
     img: '',
     color: 'bg-brand-orange',
     fallbackColor: 'bg-brand-orange',
@@ -41,7 +43,7 @@ const projects = [
   {
     title: 'E-commerce Ad Campaign',
     category: 'Performance Ads',
-    desc: 'Meta ad campaign that achieved a 4.2x ROAS for a DTC skincare brand over 90 days.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu.',
     img: '',
     color: 'bg-brand-lavender',
     fallbackColor: 'bg-brand-lavender',
@@ -49,7 +51,7 @@ const projects = [
   {
     title: 'Creator Influencer Push',
     category: 'Influencer Outreach',
-    desc: 'Coordinated micro-influencer outreach across 12 creators resulting in 800K+ combined impressions.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
     img: '',
     color: 'bg-brand-green',
     fallbackColor: 'bg-brand-green',
@@ -110,6 +112,8 @@ function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: numbe
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState('All');
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   const filtered = activeFilter === 'All'
     ? projects
     : projects.filter(p => p.category === activeFilter);
@@ -134,7 +138,7 @@ export default function PortfolioPage() {
               Impactful <br /><span className='text-brand-orange italic'>Results.</span>
             </h1>
             <p className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-2xl'>
-              A glimpse into how we've transformed brands into social media powerhouses through creative innovation and bold strategy.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna liqua.
             </p>
           </motion.div>
         </div>
@@ -214,16 +218,18 @@ export default function PortfolioPage() {
               Want to Be <br /><span className='text-brand-orange italic'>On This Page?</span>
             </h2>
             <p className='text-white/60 text-xl mb-10 max-w-xl mx-auto leading-relaxed'>
-              Apply to work with 4SIX CREATIVE and let us make your brand impossible to scroll past.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc.
             </p>
-            <a href='/contact'>
+            <Link to='/contact#work-with-us'>
               <Button className='bg-brand-orange text-white hover:bg-brand-lavender rounded-full px-10 py-6 text-lg font-bold uppercase tracking-widest creative-border-sm creative-border-hover transition-colors flex items-center gap-2 mx-auto'>
                 Apply Now <ArrowRight className='w-5 h-5' />
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
