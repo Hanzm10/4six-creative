@@ -13,52 +13,107 @@ const filterCategories: ('All' | BlogCategory)[] = ['All', 'Strategy', 'Design',
 
 function BlogPostCard({ post, idx }: { post: BlogPost; idx: number }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ delay: (idx % 3) * 0.1 }}
-      whileHover={{ y: -5 }}
-      className='group creative-border rounded-[2rem] overflow-hidden bg-white flex flex-col cursor-pointer'
-    >
-      <div className={cn('aspect-[16/10] overflow-hidden', post.fallbackColor)}>
-        <div className={cn(
-          'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
-          post.fallbackColor
-        )}>
-          <span className='font-display font-black text-brand-dark/20 text-[clamp(1.5rem,4vw,3rem)] uppercase tracking-tighter text-center px-6 leading-none'>
+    <Link to={`/blog/${post.slug}`} className="block">
+      <motion.article
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ delay: (idx % 3) * 0.1 }}
+        whileHover={{ y: -5 }}
+        className='group creative-border rounded-[2rem] overflow-hidden bg-white flex flex-col cursor-pointer h-full'
+      >
+        <div className={cn('aspect-[16/10] overflow-hidden', post.fallbackColor)}>
+          <div className={cn(
+            'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
+            post.fallbackColor
+          )}>
+            <span className='font-display font-black text-brand-dark/20 text-[clamp(1.5rem,4vw,3rem)] uppercase tracking-tighter text-center px-6 leading-none'>
+              {post.category}
+            </span>
+          </div>
+        </div>
+        <div className='p-6 flex flex-col gap-3 border-t-4 border-brand-dark flex-1'>
+          <Badge className={cn(post.fallbackColor, 'border-brand-dark text-brand-dark border-2 w-fit')}>
             {post.category}
-          </span>
+          </Badge>
+          <h3 className='text-xl font-display font-bold uppercase leading-tight tracking-tight line-clamp-2'>
+            {post.title}
+          </h3>
+          <p className='text-sm text-brand-dark/60 leading-relaxed flex-1'>{post.excerpt}</p>
+          <div className='flex items-center justify-between pt-2 border-t border-brand-dark/10 mt-auto'>
+            <span className='text-xs font-bold uppercase tracking-widest text-brand-dark/50'>
+              {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+            <span className='inline-flex items-center gap-1.5 text-brand-orange font-bold text-xs uppercase tracking-widest group-hover:gap-2.5 transition-all'>
+              Read More <ArrowRight className='w-3.5 h-3.5' />
+            </span>
+          </div>
         </div>
-      </div>
-      <div className='p-6 flex flex-col gap-3 border-t-4 border-brand-dark flex-1'>
-        <Badge className={cn(post.fallbackColor, 'border-brand-dark text-brand-dark border-2 w-fit')}>
-          {post.category}
-        </Badge>
-        <h3 className='text-xl font-display font-bold uppercase leading-tight tracking-tight line-clamp-2'>
-          {post.title}
-        </h3>
-        <p className='text-sm text-brand-dark/60 leading-relaxed flex-1'>{post.excerpt}</p>
-        <div className='flex items-center justify-between pt-2 border-t border-brand-dark/10'>
-          <span className='text-xs font-bold uppercase tracking-widest text-brand-dark/50'>
-            {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-          </span>
-          <span className='inline-flex items-center gap-1.5 text-brand-orange font-bold text-xs uppercase tracking-widest group-hover:gap-2.5 transition-all'>
-            Read More <ArrowRight className='w-3.5 h-3.5' />
-          </span>
-        </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </Link>
   );
 }
 
 export default function BlogPage() {
   const [activeFilter, setActiveFilter] = useState<'All' | BlogCategory>('All');
+  const [postsList, setPostsList] = useState<BlogPost[]>(blogPosts);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const featured = blogPosts.find(p => p.featured);
-  const nonFeatured = blogPosts.filter(p => !p.featured);
+  useEffect(() => {
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/4sixcreativevercel.wordpress.com/posts?category=blog')
+      .then(res => res.json())
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          const colors = ['bg-brand-lavender', 'bg-brand-peach', 'bg-brand-green', 'bg-brand-orange'];
+          const validCategories: BlogCategory[] = ['Strategy', 'Design', 'Social Media', 'Case Studies'];
+
+          const items = data.posts.map((post: any, index: number) => {
+            let category: BlogCategory = 'Strategy';
+            
+            // Map category
+            if (post.categories) {
+              const matched = Object.keys(post.categories).find(catName =>
+                validCategories.some(vc => vc.toLowerCase() === catName.toLowerCase())
+              );
+              if (matched) {
+                category = validCategories.find(vc => vc.toLowerCase() === matched.toLowerCase())!;
+              }
+            }
+            
+            // Calculate read time
+            const plainTextContent = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const wordCount = plainTextContent.split(/\s+/).length || 1;
+            const readTimeNum = Math.ceil(wordCount / 200);
+            const readTime = `${readTimeNum > 0 ? readTimeNum : 1} min read`;
+
+            return {
+              slug: post.slug,
+              title: post.title,
+              excerpt: post.excerpt.replace(/<\/?[^>]+(>|$)/g, "").trim(),
+              category: category,
+              date: post.date,
+              readTime: readTime,
+              author: post.author?.name || 'Troyia Monay',
+              fallbackColor: colors[index % colors.length],
+              featured: post.sticky === true
+            };
+          });
+
+          // If no sticky post is found, designate the first post as featured
+          const hasFeatured = items.some((item: any) => item.featured);
+          if (!hasFeatured && items.length > 0) {
+            items[0].featured = true;
+          }
+
+          setPostsList(items);
+        }
+      })
+      .catch(err => console.error("Error fetching blog posts from WordPress:", err));
+  }, []);
+
+  const featured = postsList.find(p => p.featured);
+  const nonFeatured = postsList.filter(p => !p.featured);
   const visible = activeFilter === 'All'
     ? nonFeatured
     : nonFeatured.filter(p => p.category === activeFilter);
@@ -93,50 +148,52 @@ export default function BlogPage() {
       {featured && (
         <section className='py-16 bg-white px-6'>
           <div className='max-w-7xl mx-auto'>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className='grid grid-cols-1 lg:grid-cols-2 creative-border rounded-[2.5rem] overflow-hidden group cursor-pointer'
-            >
-              {/* Color block */}
-              <div className={cn('aspect-[4/3] lg:aspect-auto min-h-[300px] overflow-hidden', featured.fallbackColor)}>
-                <div className={cn(
-                  'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
-                  featured.fallbackColor
-                )}>
-                  <span className='font-display font-black text-brand-dark/20 text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter text-center px-8 leading-none'>
-                    Featured
+            <Link to={`/blog/${featured.slug}`} className="block">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className='grid grid-cols-1 lg:grid-cols-2 creative-border rounded-[2.5rem] overflow-hidden group cursor-pointer'
+              >
+                {/* Color block */}
+                <div className={cn('aspect-[4/3] lg:aspect-auto min-h-[300px] overflow-hidden', featured.fallbackColor)}>
+                  <div className={cn(
+                    'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
+                    featured.fallbackColor
+                  )}>
+                    <span className='font-display font-black text-brand-dark/20 text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter text-center px-8 leading-none'>
+                      Featured
+                    </span>
+                  </div>
+                </div>
+                {/* Content */}
+                <div className='p-8 md:p-12 flex flex-col justify-center gap-5 bg-brand-light'>
+                  <div className='flex flex-wrap gap-2'>
+                    <Badge className='bg-brand-orange text-white border-brand-dark border-2'>Featured</Badge>
+                    <Badge className={cn(featured.fallbackColor, 'text-brand-dark border-brand-dark border-2')}>
+                      {featured.category}
+                    </Badge>
+                  </div>
+                  <h2 className='text-[clamp(1.8rem,4vw,3rem)] font-display font-black uppercase leading-none tracking-tight'>
+                    {featured.title}
+                  </h2>
+                  <p className='text-brand-dark/70 leading-relaxed text-lg'>{featured.excerpt}</p>
+                  <div className='flex flex-wrap gap-4 text-xs text-brand-dark/50 font-bold uppercase tracking-widest'>
+                    <span className='inline-flex items-center gap-1.5'>
+                      <Calendar className='w-3.5 h-3.5' />
+                      {new Date(featured.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </span>
+                    <span className='inline-flex items-center gap-1.5'>
+                      <Clock className='w-3.5 h-3.5' />
+                      {featured.readTime}
+                    </span>
+                  </div>
+                  <span className='inline-flex items-center gap-2 text-brand-orange font-bold text-sm uppercase tracking-widest group-hover:gap-3 transition-all w-fit'>
+                    Read More <ArrowRight className='w-4 h-4' />
                   </span>
                 </div>
-              </div>
-              {/* Content */}
-              <div className='p-8 md:p-12 flex flex-col justify-center gap-5 bg-brand-light'>
-                <div className='flex flex-wrap gap-2'>
-                  <Badge className='bg-brand-orange text-white border-brand-dark border-2'>Featured</Badge>
-                  <Badge className={cn(featured.fallbackColor, 'text-brand-dark border-brand-dark border-2')}>
-                    {featured.category}
-                  </Badge>
-                </div>
-                <h2 className='text-[clamp(1.8rem,4vw,3rem)] font-display font-black uppercase leading-none tracking-tight'>
-                  {featured.title}
-                </h2>
-                <p className='text-brand-dark/70 leading-relaxed text-lg'>{featured.excerpt}</p>
-                <div className='flex flex-wrap gap-4 text-xs text-brand-dark/50 font-bold uppercase tracking-widest'>
-                  <span className='inline-flex items-center gap-1.5'>
-                    <Calendar className='w-3.5 h-3.5' />
-                    {new Date(featured.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </span>
-                  <span className='inline-flex items-center gap-1.5'>
-                    <Clock className='w-3.5 h-3.5' />
-                    {featured.readTime}
-                  </span>
-                </div>
-                <span className='inline-flex items-center gap-2 text-brand-orange font-bold text-sm uppercase tracking-widest group-hover:gap-3 transition-all w-fit'>
-                  Read More <ArrowRight className='w-4 h-4' />
-                </span>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           </div>
         </section>
       )}
