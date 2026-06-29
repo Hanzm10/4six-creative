@@ -18,10 +18,9 @@ import { Link } from "react-router-dom";
 
 interface VideoShowcaseSectionProps {
   reels?: string[];
-  videos?: any[];
 }
 
-export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectionProps) {
+export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress: videoScroll } = useScroll({
@@ -114,19 +113,7 @@ export function VideoShowcaseSection({ reels, videos = [] }: VideoShowcaseSectio
                 </div>
               </CarouselItem>
             ))}
-            {videos.map((video, idx) => (
-              <CarouselItem key={`video-${idx}`} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
-                <div
-                  className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
-                >
-                  <video
-                    src={`/uploads/${video.filename}`}
-                    controls
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
+
           </CarouselContent>
         </Carousel>
 
