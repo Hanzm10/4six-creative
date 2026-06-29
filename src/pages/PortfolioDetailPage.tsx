@@ -32,11 +32,14 @@ export default function PortfolioDetailPage() {
           const formattedUrls = matches
             .map((url: string) => {
               let cleanUrl = url.replace(/<\/?[^>]+(>|$)/g, "").trim();
-              if (cleanUrl.includes('instagram.com') && !cleanUrl.endsWith('embed/')) {
-                if (!cleanUrl.endsWith('/')) {
-                  cleanUrl += '/';
+              if (cleanUrl.includes('instagram.com')) {
+                cleanUrl = cleanUrl.replace('/reels/', '/reel/');
+                if (!cleanUrl.endsWith('embed/')) {
+                  if (!cleanUrl.endsWith('/')) {
+                    cleanUrl += '/';
+                  }
+                  cleanUrl += 'embed/';
                 }
-                cleanUrl += 'embed/';
               }
               return cleanUrl;
             })
