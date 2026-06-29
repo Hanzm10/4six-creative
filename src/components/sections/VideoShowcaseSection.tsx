@@ -95,21 +95,28 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
             </div>
           </div>
 
-          <CarouselContent className="-ml-6 pb-6">
+          <CarouselContent className="-ml-4 pb-6">
             {reelsList.map((reelUrl, idx) => (
-              <CarouselItem key={`reel-${idx}`} className="pl-6 basis-[78%] sm:basis-[320px] md:basis-[350px] shrink-0">
-                <div
-                  className="relative group rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center"
-                >
-                  <iframe
-                    src={reelUrl}
-                    title={`Instagram Reel Portfolio Item ${idx + 1}`}
-                    loading="lazy"
-                    className="w-full h-full border-none scale-[1.35] -translate-y-[8%]"
-                    scrolling="no"
-                    allowTransparency={true}
-                    allow="encrypted-media"
-                  ></iframe>
+              <CarouselItem key={`reel-${idx}`} className="pl-4 basis-[78%] sm:basis-[300px] md:basis-[320px] shrink-0">
+                <div className="relative w-full aspect-[900/1840] overflow-hidden bg-transparent">
+                  {/* Screen container */}
+                  <div className="absolute top-[2.3%] left-[5%] w-[90%] h-[95%] rounded-[2rem] sm:rounded-[2.2rem] overflow-hidden bg-brand-dark flex items-center justify-center">
+                    <iframe
+                      src={reelUrl}
+                      title={`Instagram Reel Portfolio Item ${idx + 1}`}
+                      loading="lazy"
+                      className="w-full h-full border-none scale-[1.8] -translate-y-[-20%]"
+                      scrolling="no"
+                      allowTransparency={true}
+                      allow="encrypted-media"
+                    ></iframe>
+                  </div>
+                  {/* iPhone Frame PNG */}
+                  <img
+                    src="/iPhone.png"
+                    alt="iPhone Frame"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10"
+                  />
                 </div>
               </CarouselItem>
             ))}

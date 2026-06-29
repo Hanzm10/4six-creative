@@ -136,17 +136,26 @@ export default function PortfolioDetailPage() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
-                      className="relative rounded-[2rem] overflow-hidden aspect-[3/4] creative-border bg-brand-dark flex items-center justify-center shadow-lg"
+                      className="relative w-full max-w-[280px] mx-auto aspect-[900/1840] overflow-hidden bg-transparent"
                     >
-                      <iframe
-                        src={url}
-                        title={`${clientData.title} Video Showcase ${idx + 1}`}
-                        loading="lazy"
-                        className="w-full h-full border-none scale-[1.35] -translate-y-[8%]"
-                        scrolling="no"
-                        allowTransparency={true}
-                        allow="encrypted-media"
-                      ></iframe>
+                      {/* Screen container */}
+                      <div className="absolute top-[2.3%] left-[5%] w-[90%] h-[95%] rounded-[2rem] sm:rounded-[2.2rem] overflow-hidden bg-brand-dark flex items-center justify-center">
+                        <iframe
+                          src={url}
+                          title={`${clientData.title} Video Showcase ${idx + 1}`}
+                          loading="lazy"
+                          className="w-full h-full border-none scale-[1.8] -translate-y-[-20%]"
+                          scrolling="no"
+                          allowTransparency={true}
+                          allow="encrypted-media"
+                        ></iframe>
+                      </div>
+                      {/* iPhone Frame PNG */}
+                      <img
+                        src="/iPhone.png"
+                        alt="iPhone Frame"
+                        className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10"
+                      />
                     </motion.div>
                   ))}
                 </div>
