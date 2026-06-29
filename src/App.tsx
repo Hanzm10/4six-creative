@@ -85,6 +85,9 @@ function HomePage() {
                 let url = match[0];
                 url = url.replace(/<\/?[?^>]+(>|$)/g, ""); // strip any html tags
                 if (url.includes('instagram.com')) {
+                  if (url.includes('?')) {
+                    url = url.split('?')[0];
+                  }
                   url = url.replace('/reels/', '/reel/');
                   if (!url.endsWith('embed/')) {
                     if (!url.endsWith('/')) {
