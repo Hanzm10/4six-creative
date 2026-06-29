@@ -6,7 +6,7 @@ import Navbar from '@/layout/Navbar';
 import Footer from '@/layout/Footer';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { faqs, faqCategories, type FAQCategory } from '@/data/faqs';
+import { faqs, faqCategories, type FAQCategory, type FAQItem } from '@/data/faqs';
 import { cn } from '@/lib/utils';
 
 const categoryColors: Record<FAQCategory, string> = {
@@ -20,17 +20,63 @@ const categoryColors: Record<FAQCategory, string> = {
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState<'All' | FAQCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [faqsList, setFaqsList] = useState<FAQItem[]>(faqs);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
+  useEffect(() => {
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/4sixcreativevercel.wordpress.com/posts?category=faq')
+      .then(res => res.json())
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          const validCategories: FAQCategory[] = ['General', 'Services', 'Pricing', 'Process', 'Results'];
+          
+          const items = data.posts.map((post: any) => {
+            let category: FAQCategory = 'General';
+            
+            // Map category
+            if (post.categories) {
+              const matched = Object.keys(post.categories).find(catName =>
+                validCategories.some(vc => vc.toLowerCase() === catName.toLowerCase())
+              );
+              if (matched) {
+                category = validCategories.find(vc => vc.toLowerCase() === matched.toLowerCase())!;
+              }
+            }
+            
+            // Map tags
+            if (category === 'General' && post.tags) {
+              const matched = Object.keys(post.tags).find(tagName =>
+                validCategories.some(vc => vc.toLowerCase() === tagName.toLowerCase())
+              );
+              if (matched) {
+                category = validCategories.find(vc => vc.toLowerCase() === matched.toLowerCase())!;
+              }
+            }
+
+            const answerText = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+
+            return {
+              id: post.ID.toString(),
+              category: category,
+              question: post.title,
+              answer: answerText
+            };
+          });
+          setFaqsList(items);
+        }
+      })
+      .catch(err => console.error("Error fetching FAQs from WordPress:", err));
+  }, []);
+
   const visibleFaqs = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    return faqs.filter(f => {
+    return faqsList.filter(f => {
       const matchCat = activeCategory === 'All' || f.category === activeCategory;
       const matchSearch = !q || f.question.toLowerCase().includes(q) || f.answer.toLowerCase().includes(q);
       return matchCat && matchSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory, searchQuery, faqsList]);
 
   const showGrouped = activeCategory === 'All' && !searchQuery.trim();
 

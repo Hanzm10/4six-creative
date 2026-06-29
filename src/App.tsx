@@ -9,9 +9,10 @@ import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PortfolioPage from './pages/PortfolioPage';
+import PortfolioDetailPage from './pages/PortfolioDetailPage';
 import BlogPage from './pages/BlogPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import FAQPage from './pages/FAQPage';
-import AdminPage from './pages/AdminPage';
 import Footer from '@/layout/Footer';
 import Navbar from "@/layout/Navbar";
 import { HeroSection } from '@/components/sections/HeroSection';
@@ -20,7 +21,7 @@ import { ProcessSection } from '@/components/sections/ProcessSection';
 // import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { VideoShowcaseSection } from '@/components/sections/VideoShowcaseSection';
 import { CEOSection } from '@/components/sections/CEOSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { TestimonialsSection, type TestimonialItem } from '@/components/sections/TestimonialsSection';
 // import { ApplicationForm } from '@/components/forms/ApplicationForm';
 import {
   ArrowRight,
@@ -53,13 +54,14 @@ const Marquee = ({ items, speed = 20, reverse = false }: { items: string[], spee
 
 function HomePage() {
   const [showSplash, setShowSplash] = useState(true);
-  const [portfolioReels, setPortfolioReels] = useState<string[]>([
+  const defaultReels = [
     'https://www.instagram.com/reel/C0hn8OGuEk5/embed/',
     'https://www.instagram.com/reel/CmMnxhTOqiZ/embed/',
     'https://www.instagram.com/reel/DVJ7qwBEjSu/embed/',
     'https://www.instagram.com/reel/DO7EsRUDejI/embed/'
-  ]);
-  const [portfolioVideos, setPortfolioVideos] = useState<any[]>([]);
+  ];
+  const [portfolioReels, setPortfolioReels] = useState<string[]>(defaultReels);
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -70,14 +72,62 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    fetch('/api/reels')
+    // Fetch reels
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/4sixcreativevercel.wordpress.com/posts?category=portfolio&tag=featured')
       .then(res => res.json())
-      .then(data => setPortfolioReels(data.map((r: any) => `${r.url}embed/`)))
-      .catch(err => console.error("Error fetching reels:", err));
-    fetch('/api/videos')
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          const urls = data.posts
+            .map((post: any) => {
+              // Extract URLs from the HTML post content
+              const match = post.content.match(/https?:\/\/[^\s<"']+/);
+              if (match) {
+                let url = match[0];
+                url = url.replace(/<\/?[?^>]+(>|$)/g, ""); // strip any html tags
+                if (url.includes('instagram.com') && !url.endsWith('embed/')) {
+                  if (!url.endsWith('/')) {
+                    url += '/';
+                  }
+                  url += 'embed/';
+                }
+                return url;
+              }
+              return null;
+            })
+            .filter((url: string | null) => url !== null);
+
+          if (urls.length > 0) {
+            setPortfolioReels(urls);
+          }
+        }
+      })
+      .catch(err => console.error("Error fetching reels from WordPress:", err));
+
+    // Fetch testimonials
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/4sixcreativevercel.wordpress.com/posts?category=testimonials')
       .then(res => res.json())
-      .then(data => setPortfolioVideos(data))
-      .catch(err => console.error("Error fetching videos:", err));
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          const items = data.posts.map((post: any) => {
+            // Strip HTML tags from excerpt for handle and role (e.g. "@handle | Role")
+            const excerptText = post.excerpt.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const parts = excerptText.split('|');
+            const handle = parts[0]?.trim() || '';
+            const role = parts[1]?.trim() || '';
+            // Strip HTML tags from content for the testimonial text
+            const quoteText = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+
+            return {
+              name: post.title,
+              handle: handle,
+              role: role,
+              quote: quoteText
+            };
+          });
+          setTestimonials(items);
+        }
+      })
+      .catch(err => console.error("Error fetching testimonials from WordPress:", err));
   }, []);
 
   const { scrollYProgress } = useScroll();
@@ -264,11 +314,15 @@ function HomePage() {
 
       <ProcessSection />
 
-      <VideoShowcaseSection reels={portfolioReels} videos={portfolioVideos} />
+      <VideoShowcaseSection reels={portfolioReels} />
 
       <CEOSection />
 
-      <TestimonialsSection />
+      {testimonials.length > 0 ? (
+        <TestimonialsSection testimonials={testimonials} />
+      ) : (
+        <TestimonialsSection />
+      )}
 
       {/* Work With Us CTA Section */}
       <section className="py-16 md:py-24 bg-brand-light relative overflow-hidden">
@@ -323,9 +377,10 @@ export default function App() {
       <Route path='/about' element={<AboutPage />} />
       <Route path='/contact' element={<ContactPage />} />
       <Route path='/portfolio' element={<PortfolioPage />} />
+      <Route path='/portfolio/:slug' element={<PortfolioDetailPage />} />
       <Route path='/blog' element={<BlogPage />} />
+      <Route path='/blog/:slug' element={<BlogDetailPage />} />
       <Route path='/faq' element={<FAQPage />} />
-      <Route path='/admin' element={<AdminPage />} />
     </Routes>
   );
 }
