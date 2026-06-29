@@ -1,7 +1,15 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Quote } from "lucide-react";
 
-const testimonials = [
+export interface TestimonialItem {
+  name: string;
+  handle: string;
+  role: string;
+  quote: string;
+  accent?: string;
+}
+
+const defaultTestimonials: TestimonialItem[] = [
   {
     name: "Jasmine R.",
     handle: "@jasminebeautyco",
@@ -32,7 +40,14 @@ const testimonials = [
   },
 ];
 
-export function TestimonialsSection() {
+const accentColors = [
+  "bg-brand-lavender",
+  "bg-brand-peach",
+  "bg-brand-green",
+  "bg-brand-orange"
+];
+
+export function TestimonialsSection({ testimonials = defaultTestimonials }: { testimonials?: TestimonialItem[] }) {
   const reduce = useReducedMotion();
 
   const containerVariants = {
@@ -82,24 +97,27 @@ export function TestimonialsSection() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {testimonials.map((t) => (
-            <motion.div
-              key={t.handle}
-              variants={cardVariants}
-              className={`${t.accent} p-8 rounded-3xl creative-border creative-border-hover flex flex-col gap-6`}
-            >
-              <div className="w-12 h-12 bg-white rounded-2xl creative-border-sm flex items-center justify-center flex-shrink-0">
-                <Quote className="w-5 h-5 text-brand-dark" />
-              </div>
-              <p className="font-serif italic text-lg md:text-xl text-brand-dark leading-relaxed flex-1">
-                "{t.quote}"
-              </p>
-              <div className="border-t-2 border-brand-dark/20 pt-4">
-                <p className="font-display font-bold text-brand-dark">{t.name}</p>
-                <p className="font-accent text-sm text-brand-dark/60">{t.handle} · {t.role}</p>
-              </div>
-            </motion.div>
-          ))}
+          {testimonials.map((t, index) => {
+            const accentClass = t.accent || accentColors[index % accentColors.length];
+            return (
+              <motion.div
+                key={t.handle || index}
+                variants={cardVariants}
+                className={`${accentClass} p-8 rounded-3xl creative-border creative-border-hover flex flex-col gap-6`}
+              >
+                <div className="w-12 h-12 bg-white rounded-2xl creative-border-sm flex items-center justify-center flex-shrink-0">
+                  <Quote className="w-5 h-5 text-brand-dark" />
+                </div>
+                <p className="font-serif italic text-lg md:text-xl text-brand-dark leading-relaxed flex-1">
+                  "{t.quote}"
+                </p>
+                <div className="border-t-2 border-brand-dark/20 pt-4">
+                  <p className="font-display font-bold text-brand-dark">{t.name}</p>
+                  <p className="font-accent text-sm text-brand-dark/60">{t.handle} · {t.role}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <motion.div
