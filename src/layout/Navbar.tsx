@@ -15,7 +15,6 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Admin', href: '/admin' },
   ];
 
   return (
