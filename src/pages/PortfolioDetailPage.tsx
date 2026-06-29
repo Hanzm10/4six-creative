@@ -31,6 +31,9 @@ export default function PortfolioDetailPage() {
             .map((url: string) => {
               let cleanUrl = url.replace(/<\/?[^>]+(>|$)/g, "").trim();
               if (cleanUrl.includes('instagram.com')) {
+                if (cleanUrl.includes('?')) {
+                  cleanUrl = cleanUrl.split('?')[0];
+                }
                 cleanUrl = cleanUrl.replace('/reels/', '/reel/');
                 if (!cleanUrl.endsWith('embed/')) {
                   if (!cleanUrl.endsWith('/')) {
