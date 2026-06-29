@@ -12,6 +12,8 @@ import { cn } from '@/lib/utils';
 const filterCategories: ('All' | BlogCategory)[] = ['All', 'Strategy', 'Design', 'Social Media', 'Case Studies'];
 
 function BlogPostCard({ post, idx }: { post: BlogPost; idx: number }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Link to={`/blog/${post.slug}`} className="block">
       <motion.article
@@ -23,14 +25,23 @@ function BlogPostCard({ post, idx }: { post: BlogPost; idx: number }) {
         className='group creative-border rounded-[2rem] overflow-hidden bg-white flex flex-col cursor-pointer h-full'
       >
         <div className={cn('aspect-[16/10] overflow-hidden', post.fallbackColor)}>
-          <div className={cn(
-            'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
-            post.fallbackColor
-          )}>
-            <span className='font-display font-black text-brand-dark/20 text-[clamp(1.5rem,4vw,3rem)] uppercase tracking-tighter text-center px-6 leading-none'>
-              {post.category}
-            </span>
-          </div>
+          {post.img && !imgError ? (
+            <img
+              src={post.img}
+              alt={post.title}
+              className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className={cn(
+              'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
+              post.fallbackColor
+            )}>
+              <span className='font-display font-black text-brand-dark/20 text-[clamp(1.5rem,4vw,3rem)] uppercase tracking-tighter text-center px-6 leading-none'>
+                {post.category}
+              </span>
+            </div>
+          )}
         </div>
         <div className='p-6 flex flex-col gap-3 border-t-4 border-brand-dark flex-1'>
           <Badge className={cn(post.fallbackColor, 'border-brand-dark text-brand-dark border-2 w-fit')}>
@@ -57,6 +68,7 @@ function BlogPostCard({ post, idx }: { post: BlogPost; idx: number }) {
 export default function BlogPage() {
   const [activeFilter, setActiveFilter] = useState<'All' | BlogCategory>('All');
   const [postsList, setPostsList] = useState<BlogPost[]>(blogPosts);
+  const [featuredImgError, setFeaturedImgError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -96,7 +108,8 @@ export default function BlogPage() {
               readTime: readTime,
               author: post.author?.name || 'Troyia Monay',
               fallbackColor: colors[index % colors.length],
-              featured: post.sticky === true
+              featured: post.sticky === true,
+              img: post.featured_image || ''
             };
           });
 
@@ -113,10 +126,9 @@ export default function BlogPage() {
   }, []);
 
   const featured = postsList.find(p => p.featured);
-  const nonFeatured = postsList.filter(p => !p.featured);
   const visible = activeFilter === 'All'
-    ? nonFeatured
-    : nonFeatured.filter(p => p.category === activeFilter);
+    ? postsList
+    : postsList.filter(p => p.category === activeFilter);
 
   return (
     <div className='min-h-screen bg-brand-light overflow-x-hidden'>
@@ -157,14 +169,23 @@ export default function BlogPage() {
               >
                 {/* Color block */}
                 <div className={cn('aspect-[4/3] lg:aspect-auto min-h-[300px] overflow-hidden', featured.fallbackColor)}>
-                  <div className={cn(
-                    'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
-                    featured.fallbackColor
-                  )}>
-                    <span className='font-display font-black text-brand-dark/20 text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter text-center px-8 leading-none'>
-                      Featured
-                    </span>
-                  </div>
+                  {featured.img && !featuredImgError ? (
+                    <img
+                      src={featured.img}
+                      alt={featured.title}
+                      className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+                      onError={() => setFeaturedImgError(true)}
+                    />
+                  ) : (
+                    <div className={cn(
+                      'w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105',
+                      featured.fallbackColor
+                    )}>
+                      <span className='font-display font-black text-brand-dark/20 text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter text-center px-8 leading-none'>
+                        Featured
+                      </span>
+                    </div>
+                  )}
                 </div>
                 {/* Content */}
                 <div className='p-8 md:p-12 flex flex-col justify-center gap-5 bg-brand-light'>

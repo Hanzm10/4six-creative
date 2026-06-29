@@ -10,6 +10,7 @@ export interface BlogPost {
   author: string;
   fallbackColor: string;
   featured?: boolean;
+  img?: string;
 }
 
 const colors = ['bg-brand-lavender', 'bg-brand-peach', 'bg-brand-green', 'bg-brand-orange'];

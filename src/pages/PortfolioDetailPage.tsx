@@ -23,8 +23,6 @@ export default function PortfolioDetailPage() {
       .then(res => res.json())
       .then(post => {
         if (post && post.ID) {
-          setClientData(post);
-          
           // Parse video URLs from post content
           const plainTextContent = post.content.replace(/<\/p>/g, "\n").replace(/<br\s*\/?>/g, "\n");
           const matches = plainTextContent.match(/https?:\/\/[^\s<"']+/g) || [];
@@ -45,7 +43,27 @@ export default function PortfolioDetailPage() {
             })
             .filter((url: string) => url.length > 0);
 
-          setVideoUrls(formattedUrls);
+          // Deduplicate URLs
+          const uniqueUrls = [...new Set(formattedUrls)] as string[];
+          setVideoUrls(uniqueUrls);
+
+          // Clean HTML content to remove raw URLs and their enclosing tags
+          let cleanHtml = post.content;
+          matches.forEach((url: string) => {
+            const escapedUrl = url.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            // Target the <a> link wrapper, <figure> wrapper, or raw URL text
+            const regex = new RegExp(`<a[^>]*>(?:(?!<\\/a>)[\\s\\S])*?${escapedUrl}[\\s\\S]*?<\\/a>|<figure[^>]*>(?:(?!<\\/figure>)[\\s\\S])*?${escapedUrl}[\\s\\S]*?<\\/figure>|${escapedUrl}`, 'g');
+            cleanHtml = cleanHtml.replace(regex, '');
+          });
+          // Clean up trailing break tags and empty wrappers
+          cleanHtml = cleanHtml.replace(/(?:<br\s*\/?>\s*)+<\/p>/gi, '</p>')
+                               .replace(/<p>\s*<\/p>/g, '')
+                               .replace(/<figure[^>]*>\s*<\/figure>/g, '');
+
+          setClientData({
+            ...post,
+            content: cleanHtml
+          });
         }
         setIsLoading(false);
       })
