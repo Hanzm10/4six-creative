@@ -9,56 +9,89 @@ import { Link } from 'react-router-dom';
 
 const projects = [
   {
-    title: 'happywithmeg Branding',
-    category: 'Branding & Social',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut.',
+    slug: 'from-craft-to-cash',
+    title: 'From Craft to Cash',
+    category: 'Coaching & Education',
+    desc: 'Brand strategy, business coaching framework, and visual identity mapping for crafting educators.',
     img: 'https://instagram.fmnl17-6.fna.fbcdn.net/v/t51.82787-15/662495685_18149061682479036_8333921998436741835_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&_nc_cat=109&ig_cache_key=Mzg3MzAwMjE2MzM4Nzc4MjU2OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=K9NvUF5kn8wQ7kNvwGmbZX7&_nc_oc=AdpCtYydAqxH9FZAXgxiqUltdxSIFT4kVrC-12A9_9fRuq0hQmQ01bYr1rW4ZlEP8fs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-6.fna&_nc_gid=isA7-3KSiXQdFAXqZExCuQ&_nc_ss=7a32e&oh=00_Af2bgp1SHM5r-bEPSHILUO_hqzzycpr8nTpMnn_9OygRpA&oe=69E564EF',
     color: 'bg-brand-lavender',
     fallbackColor: 'bg-brand-lavender',
   },
   {
-    title: '#Mozination Campaign',
-    category: 'Campaign Strategy',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
+    slug: 'marketing-by-monrae',
+    title: 'Marketing by Monrae',
+    category: 'Professional Services',
+    desc: 'Visual rebranding, copy framework, and launch marketing campaign for consulting leaders.',
     img: 'https://instagram.fmnl17-3.fna.fbcdn.net/v/t51.82787-15/625257710_18123569827489369_8040625987422691498_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzAyODY5Nzk3MjI3MDgxMTgwNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ijbrQOE4sSYQ7kNvwGmbZX7&_nc_oc=Adpp2HOMFXy2dMRs7i91y_I757RbJmkqHoVuIGdq8gXNQRH4nf-HTZ3DAM6V5xSPKMA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-3.fna&_nc_gid=BddqFSebmAUXWFpFNAG2eA&_nc_ss=7a32e&oh=00_Af2wroqV2qRU2ZOjJJma5h69UxzWMPpHxkNqj1KU4oXXuQ&oe=69E53B75',
     color: 'bg-brand-green',
     fallbackColor: 'bg-brand-green',
   },
   {
-    title: 'Lifestyle Brand Launch',
-    category: 'Full-Service Management',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu.',
+    slug: 'breakfast-at-barneys',
+    title: "Breakfast at Barney's",
+    category: 'Food & Hospitality',
+    desc: 'Restaurant social media launch strategy, visual guidelines, and high-impact local campaign.',
     img: '',
     color: 'bg-brand-peach',
     fallbackColor: 'bg-brand-peach',
   },
   {
-    title: 'Reels Growth Sprint',
-    category: 'Reels & Video',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
+    slug: 'tamika-christy',
+    title: 'Tamika Christy',
+    category: 'Creative & Publishing',
+    desc: 'Author brand identity, book promo timeline, and digital engagement assets.',
     img: '',
     color: 'bg-brand-orange',
     fallbackColor: 'bg-brand-orange',
   },
   {
-    title: 'E-commerce Ad Campaign',
-    category: 'Performance Ads',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididu.',
+    slug: 'shirelle',
+    title: 'Shirelle',
+    category: 'Real Estate & Finance',
+    desc: 'Realtor visual content guidelines, neighborhood showcase reels, and lead generation ad layouts.',
     img: '',
     color: 'bg-brand-lavender',
     fallbackColor: 'bg-brand-lavender',
   },
   {
-    title: 'Creator Influencer Push',
-    category: 'Influencer Outreach',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et.',
+    slug: 'shabreka-hosley',
+    title: 'Shabreka Hosley',
+    category: 'Real Estate & Finance',
+    desc: 'Financial advisor wealth-planning brand setup and scroll-stopping visual assets.',
     img: '',
     color: 'bg-brand-green',
     fallbackColor: 'bg-brand-green',
   },
+  {
+    slug: 'faces-by-etosh',
+    title: 'Faces by Etosh',
+    category: 'Beauty & Wellness',
+    desc: 'Esthetician boutique visual rebranding, skincare package graphics, and booking campaign.',
+    img: '',
+    color: 'bg-brand-peach',
+    fallbackColor: 'bg-brand-peach',
+  },
+  {
+    slug: 'yheralis',
+    title: 'Yheralis',
+    category: 'Coaching & Education',
+    desc: 'Online course curriculum branding, module styling, and course launcher social assets.',
+    img: '',
+    color: 'bg-brand-orange',
+    fallbackColor: 'bg-brand-orange',
+  },
+  {
+    slug: 'pink-print-firm',
+    title: 'Pink Print Firm',
+    category: 'Professional Services',
+    desc: 'Grant writer professional branding, layout consulting, and client acquisition template styling.',
+    img: '',
+    color: 'bg-brand-lavender',
+    fallbackColor: 'bg-brand-lavender',
+  }
 ];
 
-const categories = ['All', 'Branding & Social', 'Campaign Strategy', 'Full-Service Management', 'Reels & Video', 'Performance Ads', 'Influencer Outreach'];
+const categories = ['All', 'Coaching & Education', 'Beauty & Wellness', 'Food & Hospitality', 'Real Estate & Finance', 'Professional Services', 'Creative & Publishing'];
 
 const stats = [
   { value: '50+', label: 'Brands Worked With' },
@@ -67,56 +100,107 @@ const stats = [
   { value: '98%', label: 'Client Retention' },
 ];
 
-function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: number }) {
+function ProjectCard({ project, idx }: { project: any; idx: number }) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ amount: 0.15 }}
-      transition={{ delay: (idx % 3) * 0.1 }}
-      className='group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer'
-    >
-      <div className='aspect-[4/3] overflow-hidden'>
-        {project.img && !imgError ? (
-          <img
-            src={project.img}
-            alt={project.title}
-            className='w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110'
-            referrerPolicy='no-referrer'
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className={`w-full h-full ${project.fallbackColor} flex items-center justify-center`}>
-            <span className='font-display font-black text-brand-dark/30 text-[clamp(2rem,6vw,4rem)] uppercase tracking-tighter text-center px-6 leading-none'>
-              {project.title}
-            </span>
+    <Link to={`/portfolio/${project.slug}`} className="block">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ amount: 0.15 }}
+        transition={{ delay: (idx % 3) * 0.1 }}
+        className='group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer'
+      >
+        <div className='aspect-[4/3] overflow-hidden'>
+          {project.img && !imgError ? (
+            <img
+              src={project.img}
+              alt={project.title}
+              className='w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110'
+              referrerPolicy='no-referrer'
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className={`w-full h-full ${project.fallbackColor} flex items-center justify-center`}>
+              <span className='font-display font-black text-brand-dark/30 text-[clamp(2rem,6vw,4rem)] uppercase tracking-tighter text-center px-6 leading-none'>
+                {project.title}
+              </span>
+            </div>
+          )}
+        </div>
+        <div className='p-6 md:p-8 border-t-4 border-brand-dark flex justify-between items-center group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300'>
+          <div className='flex-1 pr-4'>
+            <Badge className={`${project.color} text-brand-dark mb-2 border-brand-dark`}>{project.category}</Badge>
+            <h3 className='text-xl md:text-2xl font-display font-bold uppercase leading-tight'>{project.title}</h3>
+            <p className='text-sm text-brand-dark/60 group-hover:text-white/60 mt-1 leading-relaxed'>{project.desc}</p>
           </div>
-        )}
-      </div>
-      <div className='p-6 md:p-8 border-t-4 border-brand-dark flex justify-between items-center group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300'>
-        <div className='flex-1 pr-4'>
-          <Badge className={`${project.color} text-brand-dark mb-2 border-brand-dark`}>{project.category}</Badge>
-          <h3 className='text-xl md:text-2xl font-display font-bold uppercase leading-tight'>{project.title}</h3>
-          <p className='text-sm text-brand-dark/60 group-hover:text-white/60 mt-1 leading-relaxed'>{project.desc}</p>
+          <div className='w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-orange text-white flex items-center justify-center creative-border-sm group-hover:rotate-45 transition-transform duration-300 shrink-0'>
+            <ArrowRight className='w-5 h-5 md:w-7 md:h-7' />
+          </div>
         </div>
-        <div className='w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-orange text-white flex items-center justify-center creative-border-sm group-hover:rotate-45 transition-transform duration-300 shrink-0'>
-          <ArrowRight className='w-5 h-5 md:w-7 md:h-7' />
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }
 
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [projectsList, setProjectsList] = useState<any[]>(projects);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
+  useEffect(() => {
+    fetch('https://public-api.wordpress.com/rest/v1.1/sites/4sixcreativevercel.wordpress.com/posts?category=clients')
+      .then(res => res.json())
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          const colors = ['bg-brand-lavender', 'bg-brand-peach', 'bg-brand-green', 'bg-brand-orange'];
+          const validCategories = [
+            'Coaching & Education',
+            'Beauty & Wellness',
+            'Food & Hospitality',
+            'Real Estate & Finance',
+            'Professional Services',
+            'Creative & Publishing'
+          ];
+
+          const items = data.posts.map((post: any, index: number) => {
+            let category = 'Coaching & Education';
+            
+            // Map category
+            if (post.categories) {
+              const matched = Object.keys(post.categories).find(catName =>
+                validCategories.some(vc => vc.toLowerCase() === catName.toLowerCase())
+              );
+              if (matched) {
+                category = validCategories.find(vc => vc.toLowerCase() === matched.toLowerCase())!;
+              }
+            }
+
+            const plainContent = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const desc = plainContent.substring(0, 120) + (plainContent.length > 120 ? '...' : '');
+
+            return {
+              slug: post.slug,
+              title: post.title,
+              category: category,
+              desc: desc,
+              img: post.featured_image || '',
+              color: colors[index % colors.length],
+              fallbackColor: colors[index % colors.length]
+            };
+          });
+
+          setProjectsList(items);
+        }
+      })
+      .catch(err => console.error("Error fetching clients from WordPress:", err));
+  }, []);
+
   const filtered = activeFilter === 'All'
-    ? projects
-    : projects.filter(p => p.category === activeFilter);
+    ? projectsList
+    : projectsList.filter(p => p.category === activeFilter);
 
   return (
     <div className='min-h-screen bg-brand-light overflow-x-hidden'>
