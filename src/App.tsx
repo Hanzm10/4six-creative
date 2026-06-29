@@ -84,11 +84,14 @@ function HomePage() {
               if (match) {
                 let url = match[0];
                 url = url.replace(/<\/?[?^>]+(>|$)/g, ""); // strip any html tags
-                if (url.includes('instagram.com') && !url.endsWith('embed/')) {
-                  if (!url.endsWith('/')) {
-                    url += '/';
+                if (url.includes('instagram.com')) {
+                  url = url.replace('/reels/', '/reel/');
+                  if (!url.endsWith('embed/')) {
+                    if (!url.endsWith('/')) {
+                      url += '/';
+                    }
+                    url += 'embed/';
                   }
-                  url += 'embed/';
                 }
                 return url;
               }
