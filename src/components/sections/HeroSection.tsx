@@ -9,15 +9,13 @@ interface HeroSectionProps {
 export function HeroSection({ onContactClick }: HeroSectionProps) {
   return (
     <section className="relative min-h-[90vh] pt-32 md:pt-32 pb-12 overflow-hidden bg-[#faece3] flex flex-col justify-center">
-      {/* Floating Objects (Simulating the 3D items from the screenshot) */}
-      <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden hidden md:block">
-        {/* Blue Chair (Simulated) */}
+      {/* Floating Objects (Simulating the 3D items from the screenshot) — commented out for cleaner hero */}
+      {/* <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden hidden md:block">
         <motion.div
           animate={{ y: [0, -15, 0], rotate: [-5, -2, -5] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-[35%] left-[2%] md:left-[5%] w-32 h-32 md:w-48 md:h-48 bg-[#2b309b] rounded-lg shadow-2xl skew-x-12"
         />
-        {/* Pink Table (Simulated) */}
         <motion.div
           animate={{ y: [0, 10, 0], rotate: [0, 5, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
@@ -25,31 +23,27 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
         >
           <div className="w-16 h-16 md:w-24 md:h-24 bg-[#faece3] rounded-full" />
         </motion.div>
-        {/* Green Cylinder */}
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           className="absolute top-[45%] left-[25%] md:left-[30%] w-24 h-32 md:w-40 md:h-48 bg-[#00873e] rounded-[3rem] shadow-2xl -rotate-12"
         />
-        {/* Yellow Patterned Plate */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-[15%] left-[10%] md:left-[20%] w-32 h-32 md:w-56 md:h-56 bg-[#d4df00] rounded-full border-[8px] border-black border-dashed shadow-xl"
         />
-        {/* Blue Vase */}
         <motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute bottom-[5%] right-[25%] md:right-[35%] w-16 h-24 md:w-24 md:h-40 bg-[#8cb8d9] rounded-t-3xl rounded-b-xl shadow-xl"
         />
-        {/* Colorful Striped Vase */}
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
           className="absolute top-[20%] left-[50%] w-12 h-20 md:w-20 md:h-32 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-500 rounded-full shadow-xl"
         />
-      </div>
+      </div> */}
 
       <div className="w-full px-4 md:px-8 relative z-10 max-w-[1800px] mx-auto">
         <div className="flex flex-col w-full">

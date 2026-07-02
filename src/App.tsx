@@ -18,6 +18,7 @@ import Navbar from "@/layout/Navbar";
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ServiceOverviewSection } from '@/components/sections/ServiceOverviewSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
+import { IndustriesSection } from '@/components/sections/IndustriesSection';
 // import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { VideoShowcaseSection } from '@/components/sections/VideoShowcaseSection';
 import { CEOSection } from '@/components/sections/CEOSection';
@@ -204,10 +205,13 @@ function HomePage() {
       <HeroSection onContactClick={scrollToContact} />
 
       {/* Marquee */}
-      <Marquee items={["Social Media Management", "Influencer Marketing", "Content Strategy", "Visual Design", "Community Reviews", "Organic Marketing"]} />
+      <Marquee items={["Social Media Management", "Influencer Marketing", "Content Strategy", "Visual Design", "Community Reviews", "Organic Marketing"]} speed={45} />
+
+      {/* Trusted Industries Section */}
+      <IndustriesSection />
 
       {/* Services Section - Bento Grid */}
-      <section id="services" className="py-24 bg-white relative">
+      <section id="services" className="pt-24 pb-12 md:pb-16 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-2xl">
@@ -314,6 +318,7 @@ function HomePage() {
         </div>
       </section>
 
+      {/* What We Do section CTA */}
       <ServiceOverviewSection />
 
       {/* <PortfolioSection /> */}
