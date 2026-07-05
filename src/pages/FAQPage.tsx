@@ -7,7 +7,7 @@ import Footer from '@/layout/Footer';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { faqs, faqCategories, type FAQCategory, type FAQItem } from '@/data/faqs';
-import { cn } from '@/lib/utils';
+import { cn, stripHtmlAndDecode } from '@/lib/utils';
 
 const categoryColors: Record<FAQCategory, string> = {
   General: 'bg-brand-lavender',
@@ -54,12 +54,12 @@ export default function FAQPage() {
               }
             }
 
-            const answerText = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const answerText = stripHtmlAndDecode(post.content);
 
             return {
               id: post.ID.toString(),
               category: category,
-              question: post.title,
+              question: stripHtmlAndDecode(post.title),
               answer: answerText
             };
           });

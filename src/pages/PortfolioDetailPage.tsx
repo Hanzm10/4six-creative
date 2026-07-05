@@ -5,6 +5,7 @@ import { ArrowLeft, Film, HelpCircle } from 'lucide-react';
 import Navbar from '@/layout/Navbar';
 import Footer from '@/layout/Footer';
 import { Button } from '@/components/ui/button';
+import { stripHtmlAndDecode } from '@/lib/utils';
 
 export default function PortfolioDetailPage() {
   const { slug } = useParams();
@@ -87,10 +88,15 @@ export default function PortfolioDetailPage() {
       'Professional Services',
       'Creative & Publishing'
     ];
-    const found = Object.keys(clientData.categories).find(catName =>
-      validIndustries.some(vi => vi.toLowerCase() === catName.toLowerCase())
-    );
-    return found ? found : 'Case Study';
+    const found = Object.keys(clientData.categories).find(catName => {
+      const decodedCat = catName.replace(/&amp;/g, '&');
+      return validIndustries.some(vi => vi.toLowerCase() === decodedCat.toLowerCase());
+    });
+    if (found) {
+      const decodedFound = found.replace(/&amp;/g, '&');
+      return validIndustries.find(vi => vi.toLowerCase() === decodedFound.toLowerCase())!;
+    }
+    return 'Case Study';
   };
 
   return (
@@ -135,7 +141,7 @@ export default function PortfolioDetailPage() {
                 {getIndustry()}
               </div>
               <h1 className='text-[clamp(2.5rem,8vw,5.5rem)] font-display font-black uppercase tracking-tighter text-brand-dark leading-none mb-8'>
-                {clientData.title}
+                {stripHtmlAndDecode(clientData.title)}
               </h1>
               <div 
                 className='text-xl md:text-2xl text-brand-dark/70 leading-relaxed max-w-4xl font-sans mb-16 [&_p]:mb-4' 
@@ -166,11 +172,10 @@ export default function PortfolioDetailPage() {
                       <div className="absolute top-[2.3%] left-[5%] w-[90%] h-[95%] rounded-[2rem] sm:rounded-[2.2rem] overflow-hidden bg-brand-dark flex items-center justify-center">
                         <iframe
                           src={url}
-                          title={`${clientData.title} Video Showcase ${idx + 1}`}
+                          title={`${stripHtmlAndDecode(clientData.title)} Video Showcase ${idx + 1}`}
                           loading="lazy"
                           className="w-full h-full border-none scale-[1.8] -translate-y-[-20%]"
                           scrolling="no"
-                          allowTransparency={true}
                           allow="encrypted-media"
                         ></iframe>
                       </div>

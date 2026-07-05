@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { stripHtmlAndDecode } from '@/lib/utils';
 
 const projects = [
   {
@@ -13,7 +14,7 @@ const projects = [
     title: 'From Craft to Cash',
     category: 'Coaching & Education',
     desc: 'Brand strategy, business coaching framework, and visual identity mapping for crafting educators.',
-    img: 'https://instagram.fmnl17-6.fna.fbcdn.net/v/t51.82787-15/662495685_18149061682479036_8333921998436741835_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&_nc_cat=109&ig_cache_key=Mzg3MzAwMjE2MzM4Nzc4MjU2OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=K9NvUF5kn8wQ7kNvwGmbZX7&_nc_oc=AdpCtYydAqxH9FZAXgxiqUltdxSIFT4kVrC-12A9_9fRuq0hQmQ01bYr1rW4ZlEP8fs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-6.fna&_nc_gid=isA7-3KSiXQdFAXqZExCuQ&_nc_ss=7a32e&oh=00_Af2bgp1SHM5r-bEPSHILUO_hqzzycpr8nTpMnn_9OygRpA&oe=69E564EF',
+    img: '',
     color: 'bg-brand-lavender',
     fallbackColor: 'bg-brand-lavender',
   },
@@ -22,7 +23,7 @@ const projects = [
     title: 'Marketing by Monrae',
     category: 'Professional Services',
     desc: 'Visual rebranding, copy framework, and launch marketing campaign for consulting leaders.',
-    img: 'https://instagram.fmnl17-3.fna.fbcdn.net/v/t51.82787-15/625257710_18123569827489369_8040625987422691498_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzAyODY5Nzk3MjI3MDgxMTgwNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ijbrQOE4sSYQ7kNvwGmbZX7&_nc_oc=Adpp2HOMFXy2dMRs7i91y_I757RbJmkqHoVuIGdq8gXNQRH4nf-HTZ3DAM6V5xSPKMA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fmnl17-3.fna&_nc_gid=BddqFSebmAUXWFpFNAG2eA&_nc_ss=7a32e&oh=00_Af2wroqV2qRU2ZOjJJma5h69UxzWMPpHxkNqj1KU4oXXuQ&oe=69E53B75',
+    img: '',
     color: 'bg-brand-green',
     fallbackColor: 'bg-brand-green',
   },
@@ -104,15 +105,15 @@ function ProjectCard({ project, idx }: { project: any; idx: number }) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <Link to={`/portfolio/${project.slug}`} className="block">
+    <Link to={`/portfolio/${project.slug}`} className="flex flex-col h-full">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ amount: 0.15 }}
         transition={{ delay: (idx % 3) * 0.1 }}
-        className='group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer'
+        className='group relative creative-border rounded-[2.5rem] overflow-hidden bg-white cursor-pointer flex flex-col h-full'
       >
-        <div className='aspect-[4/3] overflow-hidden'>
+        <div className='aspect-[4/3] overflow-hidden shrink-0'>
           {project.img && !imgError ? (
             <img
               src={project.img}
@@ -129,7 +130,7 @@ function ProjectCard({ project, idx }: { project: any; idx: number }) {
             </div>
           )}
         </div>
-        <div className='p-6 md:p-8 border-t-4 border-brand-dark flex justify-between items-center group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300'>
+        <div className='p-6 md:p-8 border-t-4 border-brand-dark flex justify-between items-center group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300 flex-1'>
           <div className='flex-1 pr-4'>
             <Badge className={`${project.color} text-brand-dark mb-2 border-brand-dark`}>{project.category}</Badge>
             <h3 className='text-xl md:text-2xl font-display font-bold uppercase leading-tight'>{project.title}</h3>
@@ -170,15 +171,21 @@ export default function PortfolioPage() {
             
             // Map category
             if (post.categories) {
-              const matched = Object.keys(post.categories).find(catName =>
-                validCategories.some(vc => vc.toLowerCase() === catName.toLowerCase())
-              );
+              const matched = Object.keys(post.categories).find(catName => {
+                const decodedCat = catName.replace(/&amp;/g, '&');
+                return validCategories.some(vc => vc.toLowerCase() === decodedCat.toLowerCase());
+              });
               if (matched) {
-                category = validCategories.find(vc => vc.toLowerCase() === matched.toLowerCase())!;
+                const decodedMatched = matched.replace(/&amp;/g, '&');
+                category = validCategories.find(vc => vc.toLowerCase() === decodedMatched.toLowerCase())!;
               }
             }
 
-            const plainContent = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            let plainContent = stripHtmlAndDecode(post.content);
+            plainContent = plainContent
+              .replace(/https?:\/\/[^\s<"'\)]+/g, '')
+              .replace(/\s+/g, ' ')
+              .trim();
             const desc = plainContent.substring(0, 120) + (plainContent.length > 120 ? '...' : '');
 
             return {
