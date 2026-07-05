@@ -1,4 +1,18 @@
-import { Instagram, Youtube } from 'lucide-react';
+import { Instagram, Youtube, Mail } from 'lucide-react';
+
+const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 export default function Footer() {
   return (
@@ -15,7 +29,9 @@ export default function Footer() {
             <div className="flex gap-4 md:gap-6">
               {[
                 { Icon: Instagram, href: "https://www.instagram.com/troyiamonay/" },
-                { Icon: Youtube, href: "https://www.youtube.com/@TroyiaMonayy" }
+                { Icon: Youtube, href: "https://www.youtube.com/@TroyiaMonayy" },
+                { Icon: TiktokIcon, href: "https://www.tiktok.com/@iamtroyiamonayy" },
+                { Icon: Mail, href: "mailto:mgmt@troyiamonay.com" }
               ].map(({ Icon, href }, i) => (
                 <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border-4 border-white/20 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all">
                   <Icon className="w-6 h-6 md:w-7 md:h-7" />
@@ -37,7 +53,7 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold text-lg md:text-xl mb-6 md:mb-8 uppercase tracking-widest text-brand-orange">Connect</h4>
             <ul className="space-y-4 md:space-y-6 text-white/60 text-base md:text-lg">
-              <li>hello@4sixcreatives.com</li>
+              <li><a href="mailto:mgmt@troyiamonay.com" className="hover:text-white transition-colors">mgmt@troyiamonay.com</a></li>
               <li>+1 (555) 000-4646</li>
               <li>123 Creative Lane, <br />Design District, NY</li>
             </ul>

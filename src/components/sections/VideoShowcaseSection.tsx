@@ -12,7 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Instagram, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -42,6 +42,18 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
 
   const reelsList = reels && reels.length > 0 ? reels : defaultReels;
 
+  // BTS placeholder images from the Edited Food Photos folder
+  const btsPhotos = [
+    "/Edited Food Photos/LobsterPlate.png",
+    "/Edited Food Photos/Cocktail.png",
+    "/Edited Food Photos/FrenchToast.png",
+    "/Edited Food Photos/AcaiBowl.png",
+    "/Edited Food Photos/EspressoMartini.png",
+    "/Edited Food Photos/LambChopandMash.png",
+    "/Edited Food Photos/BlueberryPancakes.png",
+    "/Edited Food Photos/Drinks.png",
+  ];
+
   return (
     <section ref={videoSectionRef} className="py-24 bg-[#d0c3f1] relative">
       {/* Paper Tear Overlay */}
@@ -51,14 +63,10 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
           style={{ y: topTearY }}
           className="absolute top-0 left-0 right-0 h-1/2 bg-white"
         >
-          {/* Paper texture for the tear itself */}
           <div className="absolute inset-0 opacity-40 mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/cream-paper.png")` }} />
-
-          {/* Fibrous shadow layer */}
           <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="absolute top-full left-0 w-full h-4 sm:h-6 md:h-10 lg:h-14 fill-white/60">
             <path d="M0,0 L0,22 L20,27 L40,17 L60,30 L80,20 L100,27 L120,12 L140,32 L160,22 L180,30 L200,17 L220,27 L240,14 L260,34 L280,20 L300,27 L320,12 L340,32 L360,22 L380,30 L400,17 L420,27 L440,14 L460,34 L480,20 L500,27 L520,12 L540,32 L560,22 L580,30 L600,17 L620,27 L640,14 L660,34 L680,20 L700,27 L720,12 L740,32 L760,22 L780,30 L800,17 L820,27 L840,14 L860,34 L880,20 L900,27 L920,12 L940,32 L960,22 L980,30 L1000,17 L1020,27 L1040,14 L1060,34 L1080,20 L1100,27 L1120,12 L1140,32 L1160,22 L1180,30 L1200,17 L1200,0 Z" />
           </svg>
-          {/* Main white layer */}
           <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="absolute top-full left-0 w-full h-3 sm:h-5 md:h-8 lg:h-12 fill-white drop-shadow-[0_10px_15px_rgba(0,0,0,0.2)]">
             <path d="M0,0 L0,20 L20,25 L40,15 L60,28 L80,18 L100,25 L120,10 L140,30 L160,20 L180,28 L200,15 L220,25 L240,12 L260,32 L280,18 L300,25 L320,10 L340,30 L360,20 L380,28 L400,15 L420,25 L440,12 L460,32 L480,18 L500,25 L520,10 L540,30 L560,20 L580,28 L600,15 L620,25 L640,12 L660,32 L680,18 L700,25 L720,10 L740,30 L760,20 L780,28 L800,15 L820,25 L840,12 L860,32 L880,18 L900,25 L920,10 L940,30 L960,20 L980,28 L1000,15 L1020,25 L1040,12 L1060,32 L1080,18 L1100,25 L1120,10 L1140,30 L1160,20 L1180,28 L1200,15 L1200,0 Z" />
           </svg>
@@ -69,14 +77,10 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
           style={{ y: bottomTearY }}
           className="absolute bottom-0 left-0 right-0 h-1/2 bg-white"
         >
-          {/* Paper texture for the tear itself */}
           <div className="absolute inset-0 opacity-40 mix-blend-multiply" style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/cream-paper.png")` }} />
-
-          {/* Fibrous shadow layer */}
           <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="absolute bottom-full left-0 w-full h-4 sm:h-6 md:h-10 lg:h-14 fill-white/60 rotate-180">
             <path d="M0,0 L0,22 L20,27 L40,17 L60,30 L80,20 L100,27 L120,12 L140,32 L160,22 L180,30 L200,17 L220,27 L240,14 L260,34 L280,20 L300,27 L320,12 L340,32 L360,22 L380,30 L400,17 L420,27 L440,14 L460,34 L480,20 L500,27 L520,12 L540,32 L560,22 L580,30 L600,17 L620,27 L640,14 L660,34 L680,20 L700,27 L720,12 L740,32 L760,22 L780,30 L800,17 L820,27 L840,14 L860,34 L880,20 L900,27 L920,12 L940,32 L960,22 L980,30 L1000,17 L1020,27 L1040,14 L1060,34 L1080,20 L1100,27 L1120,12 L1140,32 L1160,22 L1180,30 L1200,17 L1200,0 Z" />
           </svg>
-          {/* Main white layer */}
           <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="absolute bottom-full left-0 w-full h-3 sm:h-5 md:h-8 lg:h-12 fill-white rotate-180 drop-shadow-[0_10px_15px_rgba(0,0,0,0.2)]">
             <path d="M0,0 L0,20 L20,25 L40,15 L60,28 L80,18 L100,25 L120,10 L140,30 L160,20 L180,28 L200,15 L220,25 L240,12 L260,32 L280,18 L300,25 L320,10 L340,30 L360,20 L380,28 L400,15 L420,25 L440,12 L460,32 L480,18 L500,25 L520,10 L540,30 L560,20 L580,28 L600,15 L620,25 L640,12 L660,32 L680,18 L700,25 L720,10 L740,30 L760,20 L780,28 L800,15 L820,25 L840,12 L860,32 L880,18 L900,25 L920,10 L940,30 L960,20 L980,28 L1000,15 L1020,25 L1040,12 L1060,32 L1080,18 L1100,25 L1120,10 L1140,30 L1160,20 L1180,28 L1200,15 L1200,0 Z" />
           </svg>
@@ -84,6 +88,8 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+
+        {/* ── Portfolio Reel Carousel ── */}
         <Carousel opts={{ loop: true }} className="w-full">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] uppercase tracking-tighter font-display font-black text-brand-dark leading-none">
@@ -119,7 +125,6 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
                 </div>
               </CarouselItem>
             ))}
-
           </CarouselContent>
         </Carousel>
 
@@ -131,56 +136,144 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
           </Link>
         </div>
 
-        {/* Social Feed Grid */}
-        {/* <div className="mt-16 md:mt-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+        {/* ══════════════════════════════════════
+            Behind the Scenes Sub-Section
+        ══════════════════════════════════════ */}
+        <div className="mt-24 md:mt-32">
+
+          {/* BTS Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-brand-lavender text-brand-dark creative-border-sm font-bold text-sm tracking-widest uppercase mb-6">
-              Follow Along
-            </span>
-            <h2 className="text-3xl md:text-5xl font-display font-black uppercase text-brand-dark">
-              More From The <span className="text-brand-orange italic">Feed</span>
-            </h2>
+            <div>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-dark text-white creative-border-sm font-bold text-xs tracking-[0.2em] uppercase mb-5">
+                <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
+                Behind the Scenes
+              </span>
+              <h2 className="text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tighter font-display font-black text-brand-dark leading-none">
+                The Making<br />
+                <span className="text-brand-orange italic font-serif font-normal lowercase">of the magic</span>
+              </h2>
+            </div>
+            <p className="text-brand-dark/70 max-w-xs text-base md:text-lg leading-relaxed pb-1">
+              A glimpse into our creative process — from concept to final frame.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {Array.from({ length: 8 }).map((_, idx) => {
-              const isFourSix = idx % 2 === 0;
-              const handle = isFourSix ? '@4sixcreative' : '@troyiamonay';
-              const link = isFourSix ? 'https://instagram.com/4sixcreative' : 'https://instagram.com/troyiamonay';
+          {/* BTS Main Layout: Feature video + photo mosaic */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5 items-start">
 
-              return (
-                <motion.a
+            {/* Left column: Feature BTS Video Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -32 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-3xl overflow-hidden creative-border aspect-[3/4] bg-brand-dark group"
+            >
+              {/* Background video — Camera equipment footage */}
+              <video
+                src="/Camera eqpitment.mov"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-75 transition-opacity duration-700"
+              />
+
+              {/* Gradient vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent" />
+
+              {/* Film strip edge decoration — left */}
+              <div className="absolute left-0 top-0 bottom-0 w-7 flex flex-col justify-around items-center bg-black/70 z-10 py-3 gap-1.5">
+                {Array.from({ length: 16 }).map((_, i) => (
+                  <div key={i} className="w-3.5 h-2.5 bg-white/15 rounded-[3px] border border-white/10 flex-shrink-0" />
+                ))}
+              </div>
+
+              {/* Film strip edge decoration — right */}
+              <div className="absolute right-0 top-0 bottom-0 w-7 flex flex-col justify-around items-center bg-black/70 z-10 py-3 gap-1.5">
+                {Array.from({ length: 16 }).map((_, i) => (
+                  <div key={i} className="w-3.5 h-2.5 bg-white/15 rounded-[3px] border border-white/10 flex-shrink-0" />
+                ))}
+              </div>
+
+              {/* Bottom label bar */}
+              <div className="absolute bottom-0 left-7 right-7 z-20 p-5 flex items-center justify-between">
+                <span className="text-white/40 font-mono text-[9px] uppercase tracking-widest">4six Creative</span>
+                <span className="bg-brand-orange/90 text-white text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                  In Production
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Right column: 3×3 Photo Mosaic */}
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
+              {btsPhotos.map((src, idx) => (
+                <motion.div
                   key={idx}
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="group block relative aspect-square rounded-2xl creative-border overflow-hidden bg-white/40 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.88 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.05 + idx * 0.055,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className={`relative overflow-hidden creative-border-sm group cursor-pointer ${
+                    idx === 0
+                      ? "col-span-2 row-span-2 rounded-3xl aspect-square"
+                      : idx === 3
+                      ? "col-span-2 rounded-2xl aspect-[2/1]"
+                      : "rounded-2xl aspect-square"
+                  }`}
                 >
-                  <Instagram className="w-8 h-8 text-brand-dark/30" />
-                  
-                  <div className="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 p-4 text-center">
-                    <p className="font-bold text-white text-sm">
-                      {handle}
-                    </p>
-                    <span className="text-brand-orange text-xs uppercase tracking-widest font-bold">
-                      View Post
+                  <img
+                    src={src}
+                    alt={`BTS shot ${idx + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                  />
+                  {/* Hover reveal overlay */}
+                  <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/55 transition-colors duration-300 flex items-end justify-start p-3">
+                    <span className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-brand-orange text-white text-[9px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full">
+                      BTS
                     </span>
                   </div>
-                </motion.a>
-              );
-            })}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div> */}
+
+          {/* BTS scrolling ticker */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-10 overflow-hidden border-y-2 border-brand-dark/20 py-4"
+          >
+            <div
+              className="flex gap-12 whitespace-nowrap"
+              style={{ animation: "marquee 20s linear infinite" }}
+            >
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="flex items-center gap-4 text-brand-dark/35 font-display font-black uppercase text-base tracking-[0.2em] flex-shrink-0"
+                >
+                  Behind the Scenes
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-orange/60 inline-block" />
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
+
       </div>
     </section>
   );
