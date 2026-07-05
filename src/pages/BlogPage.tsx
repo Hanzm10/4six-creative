@@ -7,7 +7,7 @@ import Footer from '@/layout/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { blogPosts, type BlogPost, type BlogCategory } from '@/data/blogPosts';
-import { cn } from '@/lib/utils';
+import { cn, stripHtmlAndDecode } from '@/lib/utils';
 
 const filterCategories: ('All' | BlogCategory)[] = ['All', 'Strategy', 'Design', 'Social Media', 'Case Studies'];
 
@@ -94,7 +94,7 @@ export default function BlogPage() {
             }
             
             // Calculate read time
-            const plainTextContent = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const plainTextContent = stripHtmlAndDecode(post.content);
             const wordCount = plainTextContent.split(/\s+/).length || 1;
             const readTimeNum = Math.ceil(wordCount / 200);
             const readTime = `${readTimeNum > 0 ? readTimeNum : 1} min read`;
@@ -102,7 +102,7 @@ export default function BlogPage() {
             return {
               slug: post.slug,
               title: post.title,
-              excerpt: post.excerpt.replace(/<\/?[^>]+(>|$)/g, "").trim(),
+              excerpt: stripHtmlAndDecode(post.excerpt),
               category: category,
               date: post.date,
               readTime: readTime,

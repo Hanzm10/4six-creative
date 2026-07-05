@@ -6,6 +6,7 @@ import Navbar from '@/layout/Navbar';
 import Footer from '@/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { stripHtmlAndDecode } from '@/lib/utils';
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
@@ -95,7 +96,7 @@ export default function BlogDetailPage() {
                 <div className="aspect-[21/9] w-full overflow-hidden border-b-4 border-brand-dark">
                   <img 
                     src={post.featured_image} 
-                    alt={post.title} 
+                    alt={stripHtmlAndDecode(post.title)} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -116,7 +117,7 @@ export default function BlogDetailPage() {
                 </div>
 
                 <h1 className="text-3xl md:text-5xl font-display font-black uppercase leading-tight tracking-tight text-brand-dark mb-8">
-                  {post.title}
+                  {stripHtmlAndDecode(post.title)}
                 </h1>
 
                 {/* Meta details */}
