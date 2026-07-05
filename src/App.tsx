@@ -36,6 +36,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { stripHtmlAndDecode } from '@/lib/utils';
 
 const Marquee = ({ items, speed = 20, reverse = false }: { items: string[], speed?: number, reverse?: boolean }) => {
   return (
@@ -116,15 +117,15 @@ function HomePage() {
         if (data.posts && data.posts.length > 0) {
           const items = data.posts.map((post: any) => {
             // Strip HTML tags from excerpt for handle and role (e.g. "@handle | Role")
-            const excerptText = post.excerpt.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const excerptText = stripHtmlAndDecode(post.excerpt);
             const parts = excerptText.split('|');
             const handle = parts[0]?.trim() || '';
-            const role = parts[1]?.trim() || '';
+            const role = parts.slice(1).map(p => p.trim()).filter(Boolean).join(' | ');
             // Strip HTML tags from content for the testimonial text
-            const quoteText = post.content.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            const quoteText = stripHtmlAndDecode(post.content);
 
             return {
-              name: post.title,
+              name: stripHtmlAndDecode(post.title),
               handle: handle,
               role: role,
               quote: quoteText

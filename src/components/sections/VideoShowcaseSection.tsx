@@ -107,7 +107,6 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
                       loading="lazy"
                       className="w-full h-full border-none scale-[1.8] -translate-y-[-20%]"
                       scrolling="no"
-                      allowTransparency={true}
                       allow="encrypted-media"
                     ></iframe>
                   </div>
