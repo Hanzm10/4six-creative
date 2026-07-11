@@ -24,6 +24,7 @@ import { VideoShowcaseSection } from '@/components/sections/VideoShowcaseSection
 import { CEOSection } from '@/components/sections/CEOSection';
 import { TestimonialsSection, type TestimonialItem } from '@/components/sections/TestimonialsSection';
 // import { ApplicationForm } from '@/components/forms/ApplicationForm';
+import { logoBlack } from '@/assets/images';
 import {
   ArrowRight,
   Sparkles,
@@ -164,9 +165,13 @@ function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              src="/4six-creative-logo-black.png"
+              src={logoBlack}
               alt="4SIX CREATIVE"
               className="w-[80%] max-w-2xl object-contain"
+              fetchPriority="high"
+              decoding="async"
+              width={400}
+              height={134}
             />
           </motion.div>
         )}

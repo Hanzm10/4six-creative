@@ -4,6 +4,7 @@
  */
 
 import { motion } from "motion/react";
+import { meetTroyia } from "@/assets/images";
 
 export function CEOSection() {
   return (
@@ -16,10 +17,13 @@ export function CEOSection() {
             {/* Main Image */}
             <div className="rounded-t-[8rem] sm:rounded-t-[10rem] md:rounded-t-[12rem] rounded-b-[1.5rem] md:rounded-b-[2rem] overflow-hidden creative-border aspect-[3/4] relative z-10 bg-white">
               <img
-                src="/meet-troyia.jpg"
+                src={meetTroyia}
                 alt="Meet Troyia"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={1067}
               />
             </div>
           </div>
