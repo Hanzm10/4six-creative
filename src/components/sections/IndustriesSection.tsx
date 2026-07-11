@@ -1,20 +1,21 @@
 import { useRef, useState, useEffect } from "react";
+import { industryImages } from "@/assets/images";
 
 const industries = [
-  { name: "Coaches", image: "/Industries/Coaches.jpg" },
-  { name: "Marketing Strategists", image: "/Industries/Marketing Strategists.jpg" },
-  { name: "Realtors", image: "/Industries/Realtors.jpg" },
-  { name: "Restaurants", image: "/Industries/Restaurants.jpg" },
-  { name: "Bakeries", image: "/Industries/Bakery.jpg" },
-  { name: "Authors", image: "/Industries/Authors.jpg" },
-  { name: "Tax Strategists", image: "/Industries/Tax strategists.jpg" },
-  { name: "Speakers", image: "/Industries/Speakers.jpg" },
-  { name: "Entrepreneurs", image: "/Industries/Entrepreneurs.jpg" },
-  { name: "Event Planners", image: "/Industries/Event planners.jpg" },
-  { name: "Hair Stylists", image: "/Industries/Hair stylists.jpg" },
-  { name: "Nail Salons", image: "/Industries/Nail salons.jpg" },
-  { name: "Skincare", image: "/Industries/Skincare.jpg" },
-  { name: "Grant Writers", image: "/Industries/Grant writers.jpg" },
+  { name: "Coaches", image: industryImages.coaches },
+  { name: "Marketing Strategists", image: industryImages.marketingStrategists },
+  { name: "Realtors", image: industryImages.realtors },
+  { name: "Restaurants", image: industryImages.restaurants },
+  { name: "Bakeries", image: industryImages.bakery },
+  { name: "Authors", image: industryImages.authors },
+  { name: "Tax Strategists", image: industryImages.taxStrategists },
+  { name: "Speakers", image: industryImages.speakers },
+  { name: "Entrepreneurs", image: industryImages.entrepreneurs },
+  { name: "Event Planners", image: industryImages.eventPlanners },
+  { name: "Hair Stylists", image: industryImages.hairStylists },
+  { name: "Nail Salons", image: industryImages.nailSalons },
+  { name: "Skincare", image: industryImages.skincare },
+  { name: "Grant Writers", image: industryImages.grantWriters },
 ];
 
 const getGridSpan = (index: number) => {

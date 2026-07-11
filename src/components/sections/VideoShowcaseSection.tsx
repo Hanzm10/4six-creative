@@ -16,6 +16,8 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
+import { btsPhotoList, iPhoneFrame } from "@/assets/images";
+
 interface VideoShowcaseSectionProps {
   reels?: string[];
 }
@@ -42,17 +44,8 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
 
   const reelsList = reels && reels.length > 0 ? reels : defaultReels;
 
-  // BTS placeholder images from the Edited Food Photos folder
-  const btsPhotos = [
-    "/Edited Food Photos/LobsterPlate.png",
-    "/Edited Food Photos/Cocktail.png",
-    "/Edited Food Photos/FrenchToast.png",
-    "/Edited Food Photos/AcaiBowl.png",
-    "/Edited Food Photos/EspressoMartini.png",
-    "/Edited Food Photos/LambChopandMash.png",
-    "/Edited Food Photos/BlueberryPancakes.png",
-    "/Edited Food Photos/Drinks.png",
-  ];
+  // BTS photos — optimized via vite-imagetools (800px wide, WebP)
+  const btsPhotos = btsPhotoList;
 
   return (
     <section ref={videoSectionRef} className="py-24 bg-[#d0c3f1] relative">
@@ -118,7 +111,7 @@ export function VideoShowcaseSection({ reels }: VideoShowcaseSectionProps) {
                   </div>
                   {/* iPhone Frame PNG */}
                   <img
-                    src="/iPhone.png"
+                    src={iPhoneFrame}
                     alt="iPhone Frame"
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10"
                   />

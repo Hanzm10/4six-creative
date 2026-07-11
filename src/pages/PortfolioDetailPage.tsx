@@ -6,6 +6,7 @@ import Navbar from '@/layout/Navbar';
 import Footer from '@/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { stripHtmlAndDecode } from '@/lib/utils';
+import { iPhoneFrame } from '@/assets/images';
 
 export default function PortfolioDetailPage() {
   const { slug } = useParams();
@@ -181,7 +182,7 @@ export default function PortfolioDetailPage() {
                       </div>
                       {/* iPhone Frame PNG */}
                       <img
-                        src="/iPhone.png"
+                        src={iPhoneFrame}
                         alt="iPhone Frame"
                         className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10"
                       />

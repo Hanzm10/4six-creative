@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { logoBlack } from "@/assets/images";
 
 export default function Navbar({ onContactClick }: { onContactClick?: () => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
           className="flex items-center cursor-pointer h-12"
         >
           <Link to="/">
-            <img src="/4six-creative-logo-black.png" alt="4SIX CREATIVE" className="h-12 object-contain" />
+            <img src={logoBlack} alt="4SIX CREATIVE" className="h-12 object-contain" />
           </Link>
         </motion.div>
 
